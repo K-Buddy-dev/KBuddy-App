@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
 import WebView from "react-native-webview";
+import Container from "../components/Container";
 
 const WebViewScreen = () => {
   // Logic
@@ -8,9 +9,11 @@ const WebViewScreen = () => {
 
   // View
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <WebView source={{ uri: webviewURL }} />
-    </SafeAreaView>
+    <Container>
+      <SafeAreaView style={{ flex: 1 }}>
+        <WebView source={{ uri: webviewURL }} />
+      </SafeAreaView>
+    </Container>
   );
 };
 
