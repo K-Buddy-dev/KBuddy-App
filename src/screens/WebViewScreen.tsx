@@ -1,11 +1,16 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native";
+import WebView from "react-native-webview";
 
 const WebViewScreen = () => {
+  // Logic
+  const webviewURL = process.env.EXPO_PUBLIC_WEB_URL;
+
+  // View
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>WebViewScreen</Text>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <WebView source={{ uri: webviewURL }} />
+    </SafeAreaView>
   );
 };
 
