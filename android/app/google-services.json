@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "105344699730",
+    "project_id": "k-buddy-dbd66",
+    "storage_bucket": "k-buddy-dbd66.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105344699730:android:59201fb67d079ff232be8b",
+        "android_client_info": {
+          "package_name": "com.example.kbuddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevArtyQ6tWzRAjUw8GHgGricLS8Xz7sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
