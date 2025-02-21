@@ -5,6 +5,9 @@ import WebViewScreen from "./src/screens/WebViewScreen";
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
 
 export default function App() {
+  // Logic
+
+  // View
   return (
     <NavigationContainer>
       <Stack.Navigator
