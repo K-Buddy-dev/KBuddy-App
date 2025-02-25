@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import { BackHandler, SafeAreaView } from "react-native";
 import WebView from "react-native-webview";
+import { WebViewNativeEvent } from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
 
 const WebViewScreen = () => {
