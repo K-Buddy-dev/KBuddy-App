@@ -1,10 +1,18 @@
 import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
-import { BackHandler, SafeAreaView } from "react-native";
+import {
+  BackHandler,
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+} from "react-native";
 import WebView from "react-native-webview";
 import { WebViewNativeEvent } from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
+
+const deviceHeight = Dimensions.get("window").height;
+const deviceWidth = Dimensions.get("window").width;
 
 const WebViewScreen = () => {
   // Logic
@@ -42,11 +50,19 @@ const WebViewScreen = () => {
   // View
   return (
     <Container>
-      <SafeAreaView style={{ flex: 1 }}>
-        <WebView source={{ uri: webviewURL }} />
+      <SafeAreaView style={styles.webview}>
+        <WebView source={{ uri: webviewURL }} originWhitelist={["*"]} />
       </SafeAreaView>
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  webview: {
+    flex: 1,
+    width: deviceWidth,
+    height: deviceHeight,
+  },
+});
 
 export default WebViewScreen;
