@@ -2,18 +2,15 @@ import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Alert,
   BackHandler,
   Dimensions,
   SafeAreaView,
   StyleSheet,
 } from "react-native";
 import WebView from "react-native-webview";
-import {
-  WebViewMessageEvent,
-  WebViewNativeEvent,
-} from "react-native-webview/lib/WebViewTypes";
+import { WebViewNativeEvent } from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
+import { cameraPermission, galleryPermission } from "../utils/permissions";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -27,21 +24,19 @@ const WebViewScreen = () => {
   const [navState, setNavState] = useState<WebViewNativeEvent>();
   const webviewRef = useRef<WebView>(null);
 
-  // 간단한 메시지 처리기
-  const onMessage = (event: WebViewMessageEvent) => {
+  const onMessage = async (event: any) => {
     try {
-      const data = JSON.parse(event.nativeEvent.data);
-      console.log("Received message from webview:", data);
+      const message = JSON.parse(event.nativeEvent.data);
 
-      if (data.action === "openCamera") {
-        Alert.alert("메시지 수신", "카메라 권한 요청 메시지를 받았습니다");
-        // 실제 권한 요청은 아직 호출하지 않음
-      } else if (data.action === "getAlbum") {
-        Alert.alert("메시지 수신", "갤러리 권한 요청 메시지를 받았습니다");
-        // 실제 권한 요청은 아직 호출하지 않음
+      if (message.action === "getAlbum") {
+        galleryPermission(webviewRef);
+      }
+
+      if (message.action === "openCamera") {
+        cameraPermission(webviewRef);
       }
     } catch (error) {
-      console.error("메시지 파싱 에러:", error);
+      console.error("onMessage Error:", error);
     }
   };
 

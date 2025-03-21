@@ -1,6 +1,0 @@
-module Pods_kbuddy {
-  umbrella header "Pods-kbuddy-umbrella.h"
-
-  export *
-  module * { export * }
-}
