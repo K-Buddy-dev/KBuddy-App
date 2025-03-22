@@ -17,8 +17,10 @@ export const galleryPermission = async (
 
       const mediaFiles = await controlGallery();
 
+      console.log(JSON.stringify(mediaFiles, null, 5));
+
       webviewRef.current?.postMessage(
-        JSON.stringify({ action: "albumData", data: mediaFiles })
+        JSON.stringify({ action: "albumData", album: mediaFiles })
       );
     } else {
       const { status: newStatus } =

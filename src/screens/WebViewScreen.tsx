@@ -8,7 +8,10 @@ import {
   StyleSheet,
 } from "react-native";
 import WebView from "react-native-webview";
-import { WebViewNativeEvent } from "react-native-webview/lib/WebViewTypes";
+import {
+  WebViewMessageEvent,
+  WebViewNativeEvent,
+} from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
 import { cameraPermission, galleryPermission } from "../utils/permissions";
 
@@ -24,16 +27,16 @@ const WebViewScreen = () => {
   const [navState, setNavState] = useState<WebViewNativeEvent>();
   const webviewRef = useRef<WebView>(null);
 
-  const onMessage = async (event: any) => {
+  const onMessage = async (event: WebViewMessageEvent) => {
     try {
       const message = JSON.parse(event.nativeEvent.data);
 
       if (message.action === "getAlbum") {
-        galleryPermission(webviewRef);
+        await galleryPermission(webviewRef);
       }
 
       if (message.action === "openCamera") {
-        cameraPermission(webviewRef);
+        await cameraPermission(webviewRef);
       }
     } catch (error) {
       console.error("onMessage Error:", error);
