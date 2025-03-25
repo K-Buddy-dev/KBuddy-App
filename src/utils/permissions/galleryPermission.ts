@@ -1,7 +1,7 @@
+import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 import { Alert } from "react-native";
 import WebView from "react-native-webview";
-import { controlGallery } from "../control";
 
 export const galleryPermission = async (
   webviewRef: React.RefObject<WebView<{}>>
@@ -10,18 +10,26 @@ export const galleryPermission = async (
 
   while (!granted) {
     const { status } = await MediaLibrary.getPermissionsAsync();
-
     if (status === "granted") {
       granted = true;
       console.log("갤러리 권한 허용됨");
 
-      const mediaFiles = await controlGallery();
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        base64: true,
+        allowsMultipleSelection: true,
+      });
 
-      console.log(JSON.stringify(mediaFiles, null, 5));
+      if (!result.canceled && result.assets?.length > 0) {
+        const album = result.assets.map((image) => image.base64);
 
-      webviewRef.current?.postMessage(
-        JSON.stringify({ action: "albumData", album: mediaFiles })
-      );
+        if (webviewRef.current) {
+          webviewRef.current.postMessage(
+            JSON.stringify({ action: "albumData", album: album })
+          );
+        }
+      }
     } else {
       const { status: newStatus } =
         await MediaLibrary.requestPermissionsAsync();

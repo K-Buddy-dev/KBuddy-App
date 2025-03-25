@@ -72,10 +72,12 @@ const WebViewScreen = () => {
     <Container>
       <SafeAreaView style={styles.webview}>
         <WebView
+          ref={webviewRef}
           source={{ uri: webviewURL }}
           originWhitelist={["*"]}
           javaScriptEnabled={true}
           onMessage={onMessage}
+          webviewDebuggingEnabled={true}
         />
       </SafeAreaView>
     </Container>
