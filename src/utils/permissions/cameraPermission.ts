@@ -15,11 +15,13 @@ export const cameraPermission = async (
       granted = true;
       console.log("카메라 권한 허용됨");
 
-      const imageUri = await controlCamera();
+      const image = await controlCamera(webviewRef);
 
-      webviewRef.current?.postMessage(
-        JSON.stringify({ action: "cameraImage", imageUri })
-      );
+      if (image) {
+        webviewRef.current?.postMessage(
+          JSON.stringify({ action: "albumData", album: image })
+        );
+      }
     } else {
       const { status: newStatus } =
         await Camera.requestCameraPermissionsAsync();
