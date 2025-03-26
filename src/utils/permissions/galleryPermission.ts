@@ -22,7 +22,10 @@ export const galleryPermission = async (
       });
 
       if (!result.canceled && result.assets?.length > 0) {
-        const album = result.assets.map((image) => image.base64);
+        const album = result.assets.map((image) => {
+          const mimeType = "image/jpeg";
+          return `data:${mimeType};base64,${image.base64}`;
+        });
 
         if (webviewRef.current) {
           webviewRef.current.postMessage(
