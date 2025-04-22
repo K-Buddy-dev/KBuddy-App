@@ -47,7 +47,7 @@ export default function App() {
       }}
     >
       <Stack.Navigator
-        initialRouteName="Test"
+        initialRouteName="WebView"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="WebView" component={WebViewScreen} />

@@ -13,7 +13,8 @@ import {
   WebViewNativeEvent,
 } from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
-import { cameraPermission, galleryPermission } from "../utils/permissions";
+import { cameraPermission } from "../natives/camera";
+import { galleryPermission } from "../natives/gallery";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
