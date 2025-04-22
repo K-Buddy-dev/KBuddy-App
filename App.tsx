@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useRef } from "react";
+import TestScreen from "./src/screens/TestScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
 
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
@@ -46,10 +47,11 @@ export default function App() {
       }}
     >
       <Stack.Navigator
-        initialRouteName="WebView"
+        initialRouteName="Test"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="WebView" component={WebViewScreen} />
+        <Stack.Screen name="Test" component={TestScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
