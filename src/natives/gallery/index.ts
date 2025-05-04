@@ -1,2 +1,2 @@
-export * from "./galleryPermission";
 export * from "./pickImages";
+export * from "./requestGalleryPermission";

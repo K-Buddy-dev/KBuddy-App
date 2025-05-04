@@ -1,5 +1,6 @@
 import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useRef, useState } from "react";
 import {
   BackHandler,
@@ -13,8 +14,7 @@ import {
   WebViewNativeEvent,
 } from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
-import { cameraPermission } from "../natives/camera";
-import { galleryPermission } from "../natives/gallery";
+import { usePhoto } from "../contexts/photoContext";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -23,21 +23,34 @@ const WebViewScreen = () => {
   // Logic
   const webviewURL = process.env.EXPO_PUBLIC_WEB_URL;
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ROOT_NAVIGATION>>();
 
   const [navState, setNavState] = useState<WebViewNativeEvent>();
   const webviewRef = useRef<WebView>(null);
+
+  const { setLimit } = usePhoto();
 
   const onMessage = async (event: WebViewMessageEvent) => {
     try {
       const message = JSON.parse(event.nativeEvent.data);
 
-      if (message.action === "getAlbum") {
-        await galleryPermission(webviewRef);
-      }
+      console.log(message);
 
-      if (message.action === "openCamera") {
-        await cameraPermission(webviewRef);
+      if (message.action === "getAlbum") {
+        let limit = 1;
+
+        switch (message.type) {
+          case "Blog":
+            limit = 10;
+            break;
+          case "Q&A":
+            limit = 5;
+            break;
+          case "Profile":
+          default:
+            limit = 1;
+        }
+        navigation.navigate("Album", { limit });
       }
     } catch (error) {
       console.error("onMessage Error:", error);

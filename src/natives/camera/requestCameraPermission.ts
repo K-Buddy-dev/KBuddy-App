@@ -3,8 +3,8 @@ import { Alert, Linking } from "react-native";
 import WebView from "react-native-webview";
 import { takePhoto } from ".";
 
-export const cameraPermission = async (
-  webviewRef: React.RefObject<WebView<{}>>
+export const requestCameraPermission = async (
+  webviewRef?: React.RefObject<WebView<{}>>
 ) => {
   const { status } = await Camera.getCameraPermissionsAsync();
 
@@ -14,7 +14,7 @@ export const cameraPermission = async (
     const image = await takePhoto();
 
     if (image) {
-      webviewRef.current?.postMessage(
+      webviewRef?.current?.postMessage(
         JSON.stringify({ action: "albumData", album: image })
       );
     }

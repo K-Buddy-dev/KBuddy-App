@@ -1,2 +1,2 @@
-export * from "./cameraPermission";
+export * from "./requestCameraPermission";
 export * from "./takePhoto";
