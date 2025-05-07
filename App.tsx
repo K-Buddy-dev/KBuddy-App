@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useRef } from "react";
-import { PhotoProvider } from "./src/contexts/photoContext";
+import { PhotoProvider } from "./src/contexts/PhotoContext";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import TestScreen from "./src/screens/TestScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";

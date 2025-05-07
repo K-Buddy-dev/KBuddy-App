@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import * as MediaLibrary from "expo-media-library";
 import React, { useCallback, useEffect, useState } from "react";
@@ -15,22 +15,20 @@ import {
   View,
 } from "react-native";
 import Container from "../components/Container";
+import { usePhoto } from "../contexts/PhotoContext";
 import useDidUpdate from "../hooks/useDidUpdate";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
-type Props = {
-  route: RouteProp<ROOT_NAVIGATION, "Album">;
-};
-
-const AlbumScreen = ({ route }: Props) => {
+const AlbumScreen = () => {
   // Logic
-  const { limit } = route.params;
-  const navigation = useNavigation<StackNavigationProp<ROOT_NAVIGATION>>();
+  const { limit } = usePhoto();
 
   const colums = 3;
-  const item_size = (deviceWidth - 10 * (colums + 1)) / colums;
+  const item_size = deviceWidth / colums;
+
+  const navigation = useNavigation<StackNavigationProp<ROOT_NAVIGATION>>();
 
   const [photos, setPhotos] = useState<MediaLibrary.Asset[]>([]);
   const [selectedPhotos, setSelectedPhotos] = useState<string[]>([]);
@@ -103,16 +101,23 @@ const AlbumScreen = ({ route }: Props) => {
   };
 
   const renderPhotoItem = useCallback(
-    ({ item, index }: { item: MediaLibrary.Asset; index: number }) => {
+    ({
+      item,
+      index,
+      isCheck,
+    }: {
+      item: MediaLibrary.Asset;
+      index: number;
+      isCheck: boolean;
+    }) => {
       return (
         <Pressable
           style={{
             width: item_size,
             aspectRatio: 1,
             margin: 5,
-            marginTop: 0,
-            marginBottom: 10,
-
+            // marginTop: 0,
+            // marginBottom: 10,
             position: "relative",
           }}
           onPress={() => toggleSelect(item.id)}
@@ -122,7 +127,6 @@ const AlbumScreen = ({ route }: Props) => {
             style={{ width: "100%", height: "100%", borderRadius: 5 }}
             resizeMode="cover"
           />
-
           <View
             style={{
               position: "absolute",
@@ -133,7 +137,7 @@ const AlbumScreen = ({ route }: Props) => {
           >
             <Image
               source={
-                selectedPhotos.includes(item.id)
+                isCheck
                   ? require("../assets/uncheckbox.png")
                   : require("../assets/checkbox.png")
               }
@@ -144,12 +148,12 @@ const AlbumScreen = ({ route }: Props) => {
         </Pressable>
       );
     },
-    [selectedPhotos]
+    []
   );
 
   const renderCameraButtonItem = () => {
     const colums = 3;
-    const itemWidth = (deviceWidth - 10 * (colums + 1)) / colums;
+    const itemWidth = deviceWidth / colums;
     return (
       <Pressable
         onPress={() => console.log("카메라 촬영")}
@@ -161,8 +165,8 @@ const AlbumScreen = ({ route }: Props) => {
           alignItems: "center",
           backgroundColor: "#f4f4f4",
           margin: 5,
-          marginTop: 0,
-          borderRadius: 5,
+          // marginTop: 0,
+          // borderRadius: 5,
         }}
       >
         <Image
@@ -222,7 +226,7 @@ const AlbumScreen = ({ route }: Props) => {
           >
             Recents
           </Text>
-          <Pressable onPress={() => navigation.goBack()}>
+          <Pressable>
             <Text
               style={{
                 fontFamily: "Roboto",
@@ -249,9 +253,13 @@ const AlbumScreen = ({ route }: Props) => {
             renderItem={({ item, index }) =>
               item === null
                 ? renderCameraButtonItem()
-                : renderPhotoItem({ item, index })
+                : renderPhotoItem({
+                    item,
+                    index,
+                    isCheck: selectedPhotos.includes(item.id),
+                  })
             }
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(_, index) => index.toString()}
             numColumns={colums}
             onEndReached={() => hasNextPage && loadPhotos(endCursor)}
             onEndReachedThreshold={0.2}

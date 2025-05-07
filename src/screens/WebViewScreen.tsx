@@ -14,7 +14,7 @@ import {
   WebViewNativeEvent,
 } from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
-import { usePhoto } from "../contexts/photoContext";
+import { usePhoto } from "../contexts/PhotoContext";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -50,7 +50,9 @@ const WebViewScreen = () => {
           default:
             limit = 1;
         }
-        navigation.navigate("Album", { limit });
+
+        setLimit(limit);
+        navigation.navigate("Album");
       }
     } catch (error) {
       console.error("onMessage Error:", error);
