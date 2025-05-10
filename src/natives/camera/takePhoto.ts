@@ -9,7 +9,8 @@ export const takePhoto = async () => {
 
   if (!photo.canceled && photo.assets?.length > 0) {
     const result = photo.assets.map((p) => {
-      return `data:image/jpeg;base64,${p.base64}`;
+      const mimeType = "image/jpeg";
+      return `data:${mimeType};base64,${p.base64}`;
     });
 
     return result;

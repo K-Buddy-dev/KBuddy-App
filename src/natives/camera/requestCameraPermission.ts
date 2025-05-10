@@ -1,10 +1,12 @@
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Camera } from "expo-camera";
 import { Alert, Linking } from "react-native";
 import WebView from "react-native-webview";
-import { takePhoto } from ".";
+import { takePhoto } from "./takePhoto";
 
 export const requestCameraPermission = async (
-  webviewRef?: React.RefObject<WebView<{}>>
+  webviewRef: React.RefObject<WebView<{}>>,
+  navigation: StackNavigationProp<ROOT_NAVIGATION>
 ) => {
   const { status } = await Camera.getCameraPermissionsAsync();
 
@@ -17,6 +19,7 @@ export const requestCameraPermission = async (
       webviewRef?.current?.postMessage(
         JSON.stringify({ action: "albumData", album: image })
       );
+      navigation?.goBack();
     }
   } else {
     const { status: newStatus } = await Camera.requestCameraPermissionsAsync();

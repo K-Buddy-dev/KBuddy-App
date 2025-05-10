@@ -14,7 +14,6 @@ import {
   WebViewNativeEvent,
 } from "react-native-webview/lib/WebViewTypes";
 import Container from "../components/Container";
-import { usePhoto } from "../contexts/PhotoContext";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -27,8 +26,6 @@ const WebViewScreen = () => {
 
   const [navState, setNavState] = useState<WebViewNativeEvent>();
   const webviewRef = useRef<WebView>(null);
-
-  const { setLimit } = usePhoto();
 
   const onMessage = async (event: WebViewMessageEvent) => {
     try {
@@ -51,8 +48,7 @@ const WebViewScreen = () => {
             limit = 1;
         }
 
-        setLimit(limit);
-        navigation.navigate("Album");
+        navigation.navigate("Album", { limit, webviewRef });
       }
     } catch (error) {
       console.error("onMessage Error:", error);
@@ -94,6 +90,9 @@ const WebViewScreen = () => {
           javaScriptEnabled={true}
           onMessage={onMessage}
           webviewDebuggingEnabled={true}
+          onContentProcessDidTerminate={() => {
+            webviewRef.current?.reload();
+          }}
         />
       </SafeAreaView>
     </Container>

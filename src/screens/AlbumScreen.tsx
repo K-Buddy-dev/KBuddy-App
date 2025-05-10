@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import * as MediaLibrary from "expo-media-library";
 import React, { useCallback, useEffect, useState } from "react";
 import {
@@ -15,15 +15,17 @@ import {
   View,
 } from "react-native";
 import Container from "../components/Container";
-import { usePhoto } from "../contexts/PhotoContext";
 import useDidUpdate from "../hooks/useDidUpdate";
+import { requestCameraPermission } from "../natives/camera/requestCameraPermission";
+
+type AlbumScreenProps = StackScreenProps<ROOT_NAVIGATION, "Album">;
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
-const AlbumScreen = () => {
+const AlbumScreen = ({ route }: AlbumScreenProps) => {
   // Logic
-  const { limit } = usePhoto();
+  const { limit, webviewRef } = route.params;
 
   const colums = 3;
   const item_size = deviceWidth / colums;
@@ -124,14 +126,14 @@ const AlbumScreen = () => {
         >
           <Image
             source={{ uri: item.uri }}
-            style={{ width: "100%", height: "100%", borderRadius: 5 }}
+            style={{ width: "100%", height: "100%", borderRadius: 4 }}
             resizeMode="cover"
           />
           <View
             style={{
               position: "absolute",
-              top: 4,
-              right: 4,
+              top: 1,
+              right: 1,
               zIndex: 1,
             }}
           >
@@ -156,7 +158,9 @@ const AlbumScreen = () => {
     const itemWidth = deviceWidth / colums;
     return (
       <Pressable
-        onPress={() => console.log("카메라 촬영")}
+        onPress={() => {
+          requestCameraPermission(webviewRef, navigation);
+        }}
         style={{
           width: itemWidth,
           aspectRatio: 1,
@@ -165,8 +169,7 @@ const AlbumScreen = () => {
           alignItems: "center",
           backgroundColor: "#f4f4f4",
           margin: 5,
-          // marginTop: 0,
-          // borderRadius: 5,
+          borderRadius: 4,
         }}
       >
         <Image
@@ -231,7 +234,7 @@ const AlbumScreen = () => {
               style={{
                 fontFamily: "Roboto",
                 fontWeight: "400",
-                color: "#b1b1b1",
+                color: selectedPhotos.length > 0 ? "#6952f9" : "#b1b1b1",
                 fontSize: 22,
                 lineHeight: 28,
               }}
