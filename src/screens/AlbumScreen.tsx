@@ -16,6 +16,7 @@ import {
 import Container from "../components/Container";
 import useDidUpdate from "../hooks/useDidUpdate";
 import { requestCameraPermission } from "../natives/camera/requestCameraPermission";
+import convertBase64Uri from "../utils/convertBase64Uri";
 
 type AlbumScreenProps = StackScreenProps<ROOT_NAVIGATION, "Album">;
 
@@ -83,7 +84,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
     }
   };
 
-  const toggleSelect = (id: string) => {
+  const handleSelectImage = (id: string) => {
     setSelectedPhotos((prev) => {
       const isSelected = prev.includes(id);
 
@@ -97,6 +98,27 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
 
       return [...prev, id];
     });
+  };
+
+  const handleSendImageToWebView = async () => {
+    try {
+      const assets = await Promise.all(
+        selectedPhotos.map((id) => MediaLibrary.getAssetInfoAsync(id))
+      );
+
+      const images = await convertBase64Uri(assets);
+
+      webviewRef.current?.postMessage(
+        JSON.stringify({
+          action: "albumData",
+          album: images,
+        })
+      );
+
+      navigation.goBack();
+    } catch (error) {
+      console.log("갤러리 이미지 전송 오류: ", error);
+    }
   };
 
   const renderPhotoItem = useCallback(
@@ -117,7 +139,10 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             margin: 5,
             position: "relative",
           }}
-          onPress={() => toggleSelect(item.id)}
+          onPress={() => {
+            console.log(JSON.stringify(item, null, 5));
+            handleSelectImage(item.id);
+          }}
         >
           <Image
             source={{ uri: item.uri }}
@@ -223,7 +248,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             Recents
           </Text>
 
-          <Pressable>
+          <Pressable onPress={handleSendImageToWebView}>
             <Text
               style={{
                 fontFamily: "Roboto",
