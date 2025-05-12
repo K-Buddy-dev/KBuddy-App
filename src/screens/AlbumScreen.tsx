@@ -10,7 +10,6 @@ import {
   Linking,
   Pressable,
   SafeAreaView,
-  StyleSheet,
   Text,
   View,
 } from "react-native";
@@ -20,15 +19,13 @@ import { requestCameraPermission } from "../natives/camera/requestCameraPermissi
 
 type AlbumScreenProps = StackScreenProps<ROOT_NAVIGATION, "Album">;
 
-const deviceHeight = Dimensions.get("window").height;
-const deviceWidth = Dimensions.get("window").width;
-
 const AlbumScreen = ({ route }: AlbumScreenProps) => {
   // Logic
   const { limit, webviewRef } = route.params;
 
+  const deviceWidth = Dimensions.get("window").width;
   const colums = 3;
-  const item_size = deviceWidth / colums;
+  const item_size = deviceWidth / colums - 20;
 
   const navigation = useNavigation<StackNavigationProp<ROOT_NAVIGATION>>();
 
@@ -118,8 +115,6 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             width: item_size,
             aspectRatio: 1,
             margin: 5,
-            // marginTop: 0,
-            // marginBottom: 10,
             position: "relative",
           }}
           onPress={() => toggleSelect(item.id)}
@@ -154,15 +149,13 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
   );
 
   const renderCameraButtonItem = () => {
-    const colums = 3;
-    const itemWidth = deviceWidth / colums;
     return (
       <Pressable
         onPress={() => {
           requestCameraPermission(webviewRef, navigation);
         }}
         style={{
-          width: itemWidth,
+          width: item_size,
           aspectRatio: 1,
           flexDirection: "column",
           justifyContent: "center",
@@ -197,7 +190,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
   // View
   return (
     <Container>
-      <SafeAreaView style={styles.webview}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}>
         {/* TopBar */}
         <View
           style={{
@@ -205,8 +198,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             justifyContent: "space-between",
             alignItems: "center",
             paddingVertical: 16,
-            paddingLeft: 10,
-            paddingRight: 16,
+            paddingHorizontal: 16,
             borderBottomWidth: 1,
             borderBottomColor: "#e6e6e6",
           }}
@@ -214,10 +206,11 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
           <Pressable onPress={() => navigation.goBack()}>
             <Image
               source={require("../assets/back_button.png")}
-              style={{ width: 31, height: 31 }}
-              resizeMode="contain"
+              style={{ width: 24, height: 24 }}
+              resizeMode="center"
             />
           </Pressable>
+
           <Text
             style={{
               fontFamily: "Roboto",
@@ -229,6 +222,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
           >
             Recents
           </Text>
+
           <Pressable>
             <Text
               style={{
@@ -245,12 +239,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
         </View>
 
         {/* Custom Album */}
-        <View
-          style={{
-            marginTop: 16,
-            paddingHorizontal: 14,
-          }}
-        >
+        <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <FlatList
             data={[null, ...photos]}
             renderItem={({ item, index }) =>
@@ -272,14 +261,5 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  webview: {
-    flex: 1,
-    width: deviceWidth,
-    height: deviceHeight,
-    backgroundColor: "#ffffff",
-  },
-});
 
 export default AlbumScreen;
