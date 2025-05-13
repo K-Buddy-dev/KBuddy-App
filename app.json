@@ -43,7 +43,9 @@
       ]
     },
     "plugins": [
-      ["@react-native-firebase/app"],
+      [
+        "@react-native-firebase/app"
+      ],
       [
         "expo-camera",
         {
@@ -57,7 +59,8 @@
           "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
           "isAccessMediaLocationEnabled": true
         }
-      ]
+      ],
+      "expo-font"
     ],
     "web": {
       "favicon": "./assets/favicon.png"

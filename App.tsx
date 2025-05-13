@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useRef } from "react";
+import AlbumScreen from "./src/screens/AlbumScreen";
 import TestScreen from "./src/screens/TestScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
 
@@ -51,6 +52,7 @@ export default function App() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="WebView" component={WebViewScreen} />
+        <Stack.Screen name="Album" component={AlbumScreen} />
         <Stack.Screen name="Test" component={TestScreen} />
       </Stack.Navigator>
     </NavigationContainer>
