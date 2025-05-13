@@ -1,8 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+import { useFonts } from "expo-font";
 import * as MediaLibrary from "expo-media-library";
 import React, { useCallback, useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
   Dimensions,
   FlatList,
@@ -34,6 +36,11 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
   const [selectedPhotos, setSelectedPhotos] = useState<string[]>([]);
   const [hasNextPage, setHasNextPage] = useState<boolean>(false);
   const [endCursor, setEndCursor] = useState<string | undefined>(undefined);
+
+  const [fontsLoaded] = useFonts({
+    "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
+  });
 
   const requesetMediaLibraryPermissions = async () => {
     const { status } = await MediaLibrary.getPermissionsAsync();
@@ -121,6 +128,43 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
     }
   };
 
+  const renderCameraButtonItem = () => {
+    return (
+      <Pressable
+        onPress={() => {
+          requestCameraPermission(webviewRef, navigation);
+        }}
+        style={{
+          width: item_size,
+          aspectRatio: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#f4f4f4",
+          margin: 5,
+          borderRadius: 4,
+        }}
+      >
+        <Image
+          source={require("../assets/camera.png")}
+          style={{ width: 24, height: 24 }}
+          resizeMode="contain"
+        />
+        <Text
+          style={{
+            fontFamily: "Roboto-Medium",
+            fontSize: 16,
+            lineHeight: 24,
+            letterSpacing: 0.15,
+            fontWeight: "500",
+          }}
+        >
+          Camera
+        </Text>
+      </Pressable>
+    );
+  };
+
   const renderPhotoItem = useCallback(
     ({
       item,
@@ -173,35 +217,6 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
     []
   );
 
-  const renderCameraButtonItem = () => {
-    return (
-      <Pressable
-        onPress={() => {
-          requestCameraPermission(webviewRef, navigation);
-        }}
-        style={{
-          width: item_size,
-          aspectRatio: 1,
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#f4f4f4",
-          margin: 5,
-          borderRadius: 4,
-        }}
-      >
-        <Image
-          source={require("../assets/camera.png")}
-          style={{ width: 24, height: 24 }}
-          resizeMode="contain"
-        />
-        <Text style={{ fontSize: 16, lineHeight: 24, fontWeight: "500" }}>
-          Camera
-        </Text>
-      </Pressable>
-    );
-  };
-
   useEffect(() => {
     requesetMediaLibraryPermissions();
   }, []);
@@ -211,6 +226,18 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
       loadPhotos();
     }
   }, [photos]);
+
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
 
   // View
   return (
@@ -238,7 +265,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
 
           <Text
             style={{
-              fontFamily: "Roboto",
+              fontFamily: "Roboto-Medium",
               fontWeight: "400",
               color: "#222222",
               fontSize: 22,
@@ -251,7 +278,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
           <Pressable onPress={handleSendImageToWebView}>
             <Text
               style={{
-                fontFamily: "Roboto",
+                fontFamily: "Roboto-Light",
                 fontWeight: "400",
                 color: selectedPhotos.length > 0 ? "#6952f9" : "#b1b1b1",
                 fontSize: 22,
