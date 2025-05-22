@@ -7,7 +7,6 @@ import {
   Dimensions,
   Keyboard,
   KeyboardEvent,
-  PixelRatio,
   SafeAreaView,
   StyleSheet,
 } from "react-native";
@@ -66,12 +65,8 @@ const WebViewScreen = () => {
     function onKeyboardDidShow(e: KeyboardEvent) {
       webviewRef.current?.postMessage(
         JSON.stringify({
-          data: {
-            action: "keyboardHeightData",
-            height: PixelRatio.getPixelSizeForLayoutSize(
-              e.endCoordinates.height
-            ),
-          },
+          action: "keyboardHeightData",
+          height: e.endCoordinates.height,
         })
       );
       setKeyboardHeight(e.endCoordinates.height);
