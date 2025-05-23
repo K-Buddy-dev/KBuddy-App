@@ -43,9 +43,7 @@
       ]
     },
     "plugins": [
-      [
-        "@react-native-firebase/app"
-      ],
+      ["@react-native-firebase/app"],
       [
         "expo-camera",
         {
@@ -73,6 +71,7 @@
     "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7"
-    }
+    },
+    "scheme": "kbuddy"
   }
 }
