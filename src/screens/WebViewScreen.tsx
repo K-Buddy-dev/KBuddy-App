@@ -29,8 +29,6 @@ const WebViewScreen = () => {
   const [navState, setNavState] = useState<WebViewNativeEvent>();
   const webviewRef = useRef<WebView>(null);
 
-  const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
-
   const onMessage = async (event: WebViewMessageEvent) => {
     try {
       const message = JSON.parse(event.nativeEvent.data);
@@ -69,11 +67,15 @@ const WebViewScreen = () => {
           height: e.endCoordinates.height,
         })
       );
-      setKeyboardHeight(e.endCoordinates.height);
     }
 
     function onKeyboardDidHide() {
-      setKeyboardHeight(0);
+      webviewRef.current?.postMessage(
+        JSON.stringify({
+          action: "keyboardHeightData",
+          height: 0,
+        })
+      );
     }
 
     const showSubscription = Keyboard.addListener(
