@@ -27,6 +27,8 @@ const WebViewScreen = () => {
   const navigation = useNavigation<StackNavigationProp<ROOT_NAVIGATION>>();
 
   const [navState, setNavState] = useState<WebViewNativeEvent>();
+  const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState<boolean>(false);
   const webviewRef = useRef<WebView>(null);
 
   const onMessage = async (event: WebViewMessageEvent) => {
@@ -51,6 +53,9 @@ const WebViewScreen = () => {
           }
           navigation.navigate("Album", { limit, webviewRef });
           break;
+        case "getKeyboardHeight":
+          setIsKeyboardOpen(true);
+          break;
         default:
           break;
       }
@@ -61,21 +66,11 @@ const WebViewScreen = () => {
 
   useEffect(() => {
     function onKeyboardDidShow(e: KeyboardEvent) {
-      webviewRef.current?.postMessage(
-        JSON.stringify({
-          action: "keyboardHeightData",
-          height: e.endCoordinates.height,
-        })
-      );
+      setKeyboardHeight(e.endCoordinates.height);
     }
 
     function onKeyboardDidHide() {
-      webviewRef.current?.postMessage(
-        JSON.stringify({
-          action: "keyboardHeightData",
-          height: 0,
-        })
-      );
+      setKeyboardHeight(0);
     }
 
     const showSubscription = Keyboard.addListener(
@@ -91,6 +86,18 @@ const WebViewScreen = () => {
       hideSubscription.remove();
     };
   }, []);
+
+  useEffect(() => {
+    if (isKeyboardOpen && keyboardHeight > 0) {
+      webviewRef.current?.postMessage(
+        JSON.stringify({
+          action: "keyboardHeightData",
+          height: keyboardHeight,
+        })
+      );
+      setIsKeyboardOpen(false);
+    }
+  }, [keyboardHeight, isKeyboardOpen]);
 
   useEffect(() => {
     const cangoBack = navState?.canGoBack;
