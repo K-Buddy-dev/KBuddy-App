@@ -1,10 +1,11 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
 import {
   NavigationContainer,
   useNavigationContainerRef,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -15,6 +16,19 @@ export default function App() {
   // Logic
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = useRef<string | null>(null);
+
+  const [firstLaunch, setFirstLaunch] = useState<boolean>(false);
+
+  useEffect(() => {
+    AsyncStorage.getItem("launched").then((value) => {
+      if (value === null) {
+        AsyncStorage.setItem("launched", "true");
+        setFirstLaunch(true);
+      } else {
+        setFirstLaunch(false);
+      }
+    });
+  }, []);
 
   // View
   return (
