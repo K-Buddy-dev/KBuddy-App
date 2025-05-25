@@ -6,6 +6,7 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { useRef } from "react";
 import AlbumScreen from "./src/screens/AlbumScreen";
+import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
 
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
@@ -52,6 +53,7 @@ export default function App() {
       >
         <Stack.Screen name="WebView" component={WebViewScreen} />
         <Stack.Screen name="Album" component={AlbumScreen} />
+        <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
