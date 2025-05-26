@@ -17,7 +17,7 @@ export default function App() {
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = useRef<string | null>(null);
 
-  const [firstLaunch, setFirstLaunch] = useState<boolean>(false);
+  const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
 
   useEffect(() => {
     AsyncStorage.getItem("launched").then((value) => {
@@ -31,44 +31,93 @@ export default function App() {
   }, []);
 
   // View
-  return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={() => {
-        if (navigationRef.current) {
-          routeNameRef.current =
-            navigationRef.current.getCurrentRoute()?.name || "WebView";
-        }
-      }}
-      onStateChange={async () => {
-        if (!navigationRef.current) return;
+  if (firstLaunch === null) {
+    return null;
+  }
+  // 어플 실행이 처음인 경우
+  else if (firstLaunch === true) {
+    return (
+      <NavigationContainer
+        ref={navigationRef}
+        onReady={() => {
+          if (navigationRef.current) {
+            routeNameRef.current =
+              navigationRef.current.getCurrentRoute()?.name || "WebView";
+          }
+        }}
+        onStateChange={async () => {
+          if (!navigationRef.current) return;
 
-        const previousRouteName = routeNameRef.current;
-        const currentRoute = navigationRef.current.getCurrentRoute();
+          const previousRouteName = routeNameRef.current;
+          const currentRoute = navigationRef.current.getCurrentRoute();
 
-        if (!currentRoute || !currentRoute.name) return;
+          if (!currentRoute || !currentRoute.name) return;
 
-        const currentRouteName = currentRoute.name;
+          const currentRouteName = currentRoute.name;
 
-        if (previousRouteName !== currentRouteName) {
-          const analytics = getAnalytics();
+          if (previousRouteName !== currentRouteName) {
+            const analytics = getAnalytics();
 
-          await logScreenView(analytics, {
-            screen_name: currentRouteName,
-            screen_class: currentRouteName,
-          });
-        }
-        routeNameRef.current = currentRouteName;
-      }}
-    >
-      <Stack.Navigator
-        initialRouteName="OnBoarding"
-        screenOptions={{ headerShown: false }}
+            await logScreenView(analytics, {
+              screen_name: currentRouteName,
+              screen_class: currentRouteName,
+            });
+          }
+          routeNameRef.current = currentRouteName;
+        }}
       >
-        <Stack.Screen name="WebView" component={WebViewScreen} />
-        <Stack.Screen name="Album" component={AlbumScreen} />
-        <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+        <Stack.Navigator
+          initialRouteName="OnBoarding"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="WebView" component={WebViewScreen} />
+          <Stack.Screen name="Album" component={AlbumScreen} />
+          <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+  // 어플 실행이 처음이 아닌 경우
+  else {
+    return (
+      <NavigationContainer
+        ref={navigationRef}
+        onReady={() => {
+          if (navigationRef.current) {
+            routeNameRef.current =
+              navigationRef.current.getCurrentRoute()?.name || "WebView";
+          }
+        }}
+        onStateChange={async () => {
+          if (!navigationRef.current) return;
+
+          const previousRouteName = routeNameRef.current;
+          const currentRoute = navigationRef.current.getCurrentRoute();
+
+          if (!currentRoute || !currentRoute.name) return;
+
+          const currentRouteName = currentRoute.name;
+
+          if (previousRouteName !== currentRouteName) {
+            const analytics = getAnalytics();
+
+            await logScreenView(analytics, {
+              screen_name: currentRouteName,
+              screen_class: currentRouteName,
+            });
+          }
+          routeNameRef.current = currentRouteName;
+        }}
+      >
+        <Stack.Navigator
+          initialRouteName="WebView"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="WebView" component={WebViewScreen} />
+          <Stack.Screen name="Album" component={AlbumScreen} />
+          <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
