@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -14,10 +15,15 @@ const Stack = createStackNavigator<ROOT_NAVIGATION>();
 
 export default function App() {
   // Logic
+  const KAKAO_NATIVE_APP_KEY = process.env.EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY;
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = useRef<string | null>(null);
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
+  }, []);
 
   useEffect(() => {
     AsyncStorage.getItem("launched").then((value) => {

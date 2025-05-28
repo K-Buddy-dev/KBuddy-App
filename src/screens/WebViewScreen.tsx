@@ -16,6 +16,7 @@ import {
   WebViewMessageEvent,
   WebViewNativeEvent,
 } from "react-native-webview/lib/WebViewTypes";
+import handleKakaoLogin from "../auth/handleKakaoLogin";
 import Container from "../components/Container";
 
 const deviceHeight = Dimensions.get("window").height;
@@ -57,6 +58,16 @@ const WebViewScreen = () => {
         case "getKeyboardHeight":
           setIsKeyboardOpen(true);
           break;
+        case "getSocialLogin":
+          switch (message.type) {
+            case "Kakao":
+              handleKakaoLogin();
+              break;
+            case "Google":
+              break;
+            case "Apple":
+              break;
+          }
         default:
           break;
       }
