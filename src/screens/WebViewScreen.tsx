@@ -61,7 +61,7 @@ const WebViewScreen = () => {
         case "getSocialLogin":
           switch (message.type) {
             case "Kakao":
-              handleKakaoLogin();
+              handleKakaoLogin(webviewRef);
               break;
             case "Google":
               break;
