@@ -43,9 +43,7 @@
       ]
     },
     "plugins": [
-      [
-        "@react-native-firebase/app"
-      ],
+      ["@react-native-firebase/app"],
       [
         "expo-camera",
         {
@@ -58,6 +56,28 @@
           "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
           "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
           "isAccessMediaLocationEnabled": true
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": [
+              "https://devrepo.kakao.com/nexus/content/groups/public/"
+            ]
+          }
+        }
+      ],
+      [
+        "@react-native-kakao/core",
+        {
+          "nativeAppKey": "bafde7003969c3c49c0f935b8ae397c3",
+          "android": {
+            "authCodeHandlerActivity": true
+          },
+          "ios": {
+            "handleKakaoOpenUrl": true
+          }
         }
       ],
       "expo-font"
