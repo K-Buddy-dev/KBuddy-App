@@ -16,6 +16,7 @@ import {
   WebViewMessageEvent,
   WebViewNativeEvent,
 } from "react-native-webview/lib/WebViewTypes";
+import handleGoogleLogin from "../auth/handleGoogleLogin";
 import handleKakaoLogin from "../auth/handleKakaoLogin";
 import Container from "../components/Container";
 
@@ -64,6 +65,7 @@ const WebViewScreen = () => {
               handleKakaoLogin(webviewRef);
               break;
             case "Google":
+              await handleGoogleLogin(webviewRef);
               break;
             case "Apple":
               break;
