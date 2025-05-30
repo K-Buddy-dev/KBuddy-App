@@ -13,8 +13,6 @@ install! 'cocoapods',
 
 prepare_react_native_project!
 
-use_modular_headers! 
-
 target 'kbuddy' do
   use_expo_modules!
 
