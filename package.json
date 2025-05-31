@@ -12,7 +12,6 @@
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-firebase/analytics": "^21.11.0",
     "@react-native-firebase/app": "^21.11.0",
-    "@react-native-google-signin/google-signin": "^14.0.1",
     "@react-native-kakao/core": "^2.4.0",
     "@react-native-kakao/user": "^2.4.0",
     "@react-navigation/elements": "^2.2.5",

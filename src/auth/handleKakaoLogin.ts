@@ -5,7 +5,7 @@ const handleKakaoLogin = (webviewRef: React.RefObject<WebView<{}>>) => {
   try {
     login()
       .then((res) => {
-        console.log(res);
+        console.log(JSON.stringify(res, null, 5));
       })
       .catch((err) => {
         console.log(err);
