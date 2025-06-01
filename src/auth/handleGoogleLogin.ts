@@ -5,8 +5,12 @@ const handleGoogleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
   try {
     GoogleSignin.hasPlayServices();
     GoogleSignin.signIn()
-      .then((res) => console.log(JSON.stringify(res, null, 5)))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(JSON.stringify(res, null, 5));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } catch (error) {
     console.log(`login error: ${error}`);
   }
