@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
   NavigationContainer,
@@ -16,6 +17,7 @@ const Stack = createStackNavigator<ROOT_NAVIGATION>();
 export default function App() {
   // Logic
   const KAKAO_NATIVE_APP_KEY = process.env.EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY;
+  const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID;
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = useRef<string | null>(null);
 
@@ -23,6 +25,10 @@ export default function App() {
 
   useEffect(() => {
     initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
+  }, []);
+
+  useEffect(() => {
+    GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
   }, []);
 
   useEffect(() => {

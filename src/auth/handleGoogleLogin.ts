@@ -1,9 +1,10 @@
-import { login } from "@react-native-kakao/user";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import WebView from "react-native-webview";
 
-const handleKakaoLogin = (webviewRef: React.RefObject<WebView<{}>>) => {
+const handleGoogleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
   try {
-    login()
+    GoogleSignin.hasPlayServices();
+    GoogleSignin.signIn()
       .then((res) => {
         console.log(JSON.stringify(res, null, 5));
       })
@@ -15,4 +16,4 @@ const handleKakaoLogin = (webviewRef: React.RefObject<WebView<{}>>) => {
   }
 };
 
-export default handleKakaoLogin;
+export default handleGoogleLogin;

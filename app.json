@@ -16,6 +16,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.example.kbuddy",
       "googleServicesFile": "./GoogleService-Info.plist",
+      "usesAppleSignIn": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
         "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos.",
@@ -65,6 +66,9 @@
             "extraMavenRepos": [
               "https://devrepo.kakao.com/nexus/content/groups/public/"
             ]
+          },
+          "ios": {
+            "useFrameworks": "static"
           }
         }
       ],
@@ -80,6 +84,8 @@
           }
         }
       ],
+      ["@react-native-google-signin/google-signin"],
+      ["expo-apple-authentication"],
       "expo-font"
     ],
     "web": {
