@@ -65,7 +65,7 @@ const WebViewScreen = () => {
               handleKakaoLogin(webviewRef);
               break;
             case "Google":
-              await handleGoogleLogin(webviewRef);
+              handleGoogleLogin(webviewRef);
               break;
             case "Apple":
               break;

@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
   NavigationContainer,
@@ -24,6 +25,10 @@ export default function App() {
 
   useEffect(() => {
     initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
+  }, []);
+
+  useEffect(() => {
+    GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
   }, []);
 
   useEffect(() => {
