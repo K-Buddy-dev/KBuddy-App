@@ -1,4 +1,5 @@
 import * as AppleAuthentication from "expo-apple-authentication";
+import { jwtDecode } from "jwt-decode";
 import WebView from "react-native-webview";
 
 const handleAppleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
@@ -15,15 +16,18 @@ const handleAppleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
       return;
     }
 
-    console.log(JSON.stringify(result, null, 5));
+    const email = jwtDecode(result.identityToken).email;
 
-    webviewRef.current?.postMessage(
-      JSON.stringify({
-        oAuthUid: result.user,
-        oAuthEmail: result.email,
-        oAuthCategory: "APPLE",
-      })
-    );
+    if (email) {
+      console.log(email);
+      webviewRef.current?.postMessage(
+        JSON.stringify({
+          oAuthUid: result.user,
+          oAuthEmail: email,
+          oAuthCategory: "APPLE",
+        })
+      );
+    }
   } catch (error) {
     console.log(`login error: ${error}`);
   }
