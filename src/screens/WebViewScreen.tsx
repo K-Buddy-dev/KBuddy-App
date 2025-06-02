@@ -69,7 +69,7 @@ const WebViewScreen = () => {
               await handleGoogleLogin(webviewRef);
               break;
             case "Apple":
-              handleAppleLogin(webviewRef);
+              await handleAppleLogin(webviewRef);
               break;
           }
         default:
