@@ -18,16 +18,13 @@ const handleAppleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
 
     const email = jwtDecode(result.identityToken).email;
 
-    if (email) {
-      console.log(email);
-      webviewRef.current?.postMessage(
-        JSON.stringify({
-          oAuthUid: result.user,
-          oAuthEmail: email,
-          oAuthCategory: "APPLE",
-        })
-      );
-    }
+    webviewRef.current?.postMessage(
+      JSON.stringify({
+        oAuthUid: result.user,
+        oAuthEmail: email,
+        oAuthCategory: "APPLE",
+      })
+    );
   } catch (error) {
     console.log(`login error: ${error}`);
   }
