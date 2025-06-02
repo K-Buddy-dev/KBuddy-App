@@ -13,6 +13,7 @@ const handleGoogleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
       webviewRef.current?.postMessage(
         JSON.stringify({
           oAuthUid: result.data.user.id,
+          oAuthEmail: result.data.user.email,
           oAuthCategory: "GOOGLE",
         })
       );
