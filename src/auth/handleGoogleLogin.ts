@@ -1,16 +1,25 @@
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import {
+  GoogleSignin,
+  isSuccessResponse,
+} from "@react-native-google-signin/google-signin";
 import WebView from "react-native-webview";
 
 const handleGoogleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
   try {
-    GoogleSignin.hasPlayServices();
-    GoogleSignin.signIn()
-      .then((res) => {
-        console.log(JSON.stringify(res, null, 5));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    await GoogleSignin.hasPlayServices();
+    const result = await GoogleSignin.signIn();
+
+    if (isSuccessResponse(result)) {
+      webviewRef.current?.postMessage(
+        JSON.stringify({
+          oAuthUid: result.data.user.id,
+          oAuthCategory: "GOOGLE",
+        })
+      );
+    } else {
+      console.log("구글 로그인 실패");
+      return;
+    }
   } catch (error) {
     console.log(`login error: ${error}`);
   }
