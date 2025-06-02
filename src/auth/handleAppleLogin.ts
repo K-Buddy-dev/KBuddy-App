@@ -1,20 +1,28 @@
 import * as AppleAuthentication from "expo-apple-authentication";
 import WebView from "react-native-webview";
 
-const handleAppleLogin = (webviewRef: React.RefObject<WebView<{}>>) => {
+const handleAppleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
   try {
-    AppleAuthentication.signInAsync({
+    const result = await AppleAuthentication.signInAsync({
       requestedScopes: [
         AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
         AppleAuthentication.AppleAuthenticationScope.EMAIL,
       ],
-    })
-      .then((res) => {
-        console.log(JSON.stringify(res, null, 5));
+    });
+
+    if (!result) {
+      console.log("애플 로그인 실패");
+      return;
+    }
+
+    console.log(JSON.stringify(result, null, 5));
+
+    webviewRef.current?.postMessage(
+      JSON.stringify({
+        oAuthUid: result.user,
+        oAuthCategory: "APPLE",
       })
-      .catch((err) => {
-        console.log(err);
-      });
+    );
   } catch (error) {
     console.log(`login error: ${error}`);
   }
