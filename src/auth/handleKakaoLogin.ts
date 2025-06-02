@@ -26,22 +26,12 @@ const handleKakaoLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
     webviewRef.current?.postMessage(
       JSON.stringify({
         oAuthUid: profile_result.id,
+        oAuthEmail: profile_result.email,
         oAuthCategory: "KAKAO",
       })
     );
   } catch (error) {
-    const statusCode = error?.status || error?.response?.status;
-    if (statusCode === 400) {
-      console.log("요청이 잘못 되었습니다.");
-    } else if (statusCode === 401) {
-      console.log("로그인 인증에 실패했습니다. ");
-    } else if (statusCode === 403) {
-      console.log("앱 접근 권한이 없습니다.");
-    } else if (statusCode === 500 || 502) {
-      console.log("서버 오류");
-    } else if (statusCode === 503) {
-      console.log("서버 점검중");
-    }
+    console.log(`login error: ${error}`);
   }
 };
 

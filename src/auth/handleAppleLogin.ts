@@ -20,6 +20,7 @@ const handleAppleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
     webviewRef.current?.postMessage(
       JSON.stringify({
         oAuthUid: result.user,
+        oAuthEmail: result.email,
         oAuthCategory: "APPLE",
       })
     );
