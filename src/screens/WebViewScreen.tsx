@@ -7,10 +7,10 @@ import {
   Dimensions,
   Keyboard,
   KeyboardEvent,
-  PixelRatio,
   SafeAreaView,
   StyleSheet,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
 import {
   WebViewMessageEvent,
@@ -34,6 +34,8 @@ const WebViewScreen = () => {
   const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState<boolean>(false);
   const webviewRef = useRef<WebView>(null);
+
+  const insets = useSafeAreaInsets();
 
   const onMessage = async (event: WebViewMessageEvent) => {
     try {
@@ -105,12 +107,12 @@ const WebViewScreen = () => {
 
   useEffect(() => {
     if (isKeyboardOpen && keyboardHeight > 0) {
-      const pxKeyboardHeight =
-        PixelRatio.getPixelSizeForLayoutSize(keyboardHeight);
+      const notch_height = insets.top;
+
       webviewRef.current?.postMessage(
         JSON.stringify({
           action: "keyboardHeightData",
-          height: pxKeyboardHeight,
+          height: keyboardHeight - notch_height,
         })
       );
       setIsKeyboardOpen(false);
