@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash_screen.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -82,15 +82,6 @@
           "ios": {
             "handleKakaoOpenUrl": true
           }
-        }
-      ],
-      [
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#ffffff",
-          "image": "./assets/splash_screen.png",
-          "resizeMode": "contain",
-          "enableFullScreenImage_legacy": true
         }
       ],
       ["@react-native-google-signin/google-signin"],
