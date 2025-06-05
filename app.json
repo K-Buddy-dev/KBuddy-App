@@ -89,7 +89,8 @@
         {
           "backgroundColor": "#ffffff",
           "image": "./assets/splash_screen.png",
-          "resizeMode": "cover"
+          "resizeMode": "contain",
+          "enableFullScreenImage_legacy": true
         }
       ],
       ["@react-native-google-signin/google-signin"],
