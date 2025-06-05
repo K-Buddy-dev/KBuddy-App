@@ -84,6 +84,14 @@
           }
         }
       ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/splash_screen.png",
+          "resizeMode": "cover"
+        }
+      ],
       ["@react-native-google-signin/google-signin"],
       ["expo-apple-authentication"],
       "expo-font"
