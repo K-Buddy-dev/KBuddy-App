@@ -39,6 +39,7 @@ export default function App() {
         await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (error) {
         console.warn(error);
+        crashlytics().recordError(error);
       } finally {
         setAppIsReady(true);
       }
@@ -64,10 +65,6 @@ export default function App() {
         setFirstLaunch(false);
       }
     });
-  }, []);
-
-  useEffect(() => {
-    crashlytics().crash();
   }, []);
 
   const onLayoutRootView = useCallback(() => {
