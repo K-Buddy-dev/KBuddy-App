@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import crashlytics from "@react-native-firebase/crashlytics";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
@@ -63,6 +64,10 @@ export default function App() {
         setFirstLaunch(false);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    crashlytics().crash();
   }, []);
 
   const onLayoutRootView = useCallback(() => {
