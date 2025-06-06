@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "105344699730-28nc5if7or3ajm182m1e208rtnr9mvg0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kbuddy",
+            "certificate_hash": "b84650c53fa1c04d070d2bb44e86cd4798da6bc2"
+          }
+        },
+        {
           "client_id": "105344699730-viemcgbnjah9m7olre3nmjnle6jtjfeb.apps.googleusercontent.com",
           "client_type": 3
         }

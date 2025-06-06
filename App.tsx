@@ -1,10 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import {
-  getKeyHashAndroid,
-  initializeKakaoSDK,
-} from "@react-native-kakao/core";
+import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -12,7 +9,7 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Alert, Platform, View } from "react-native";
+import { View } from "react-native";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -57,15 +54,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (Platform.OS === "android") {
-      getKeyHashAndroid()
-        .then((res) => {
-          Alert.alert(res || "");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
     initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
   }, []);
 
