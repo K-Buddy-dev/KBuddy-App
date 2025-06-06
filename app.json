@@ -4,14 +4,9 @@
     "slug": "k-buddy",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app_icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.example.kbuddy",
@@ -26,7 +21,7 @@
     "android": {
       "package": "com.example.kbuddy",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/app_icon.png",
         "backgroundColor": "#ffffff"
       },
       "googleServicesFile": "./google-services.json",
@@ -85,6 +80,20 @@
         }
       ],
       ["@react-native-google-signin/google-signin"],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#6952f9",
+          "image": "./assets/splash_icon.png",
+          "resizeMode": "contain",
+          "android": {
+            "imageWidth": 100
+          },
+          "ios": {
+            "imageWidth": 200
+          }
+        }
+      ],
       ["expo-apple-authentication"],
       "expo-font"
     ],
