@@ -19,7 +19,6 @@ const Stack = createStackNavigator<ROOT_NAVIGATION>();
 SplashScreen.preventAutoHideAsync();
 
 SplashScreen.setOptions({
-  duration: 1000,
   fade: true,
 });
 
@@ -32,12 +31,6 @@ export default function App() {
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
   const [appIsReady, setAppIsReady] = useState<boolean>(false);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      await SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
 
   useEffect(() => {
     const prepare = async () => {
@@ -72,17 +65,24 @@ export default function App() {
     });
   }, []);
 
-  // View
+  const onLayoutRootView = useCallback(() => {
+    if (appIsReady) {
+      SplashScreen.hide();
+    }
+  }, [appIsReady]);
+
   if (!appIsReady || firstLaunch === null) {
     return null;
   }
 
+  // View
+  /* 
+      어플 실행이 처음인 경우: Onboarding
+      어플 실행이 처음이 아닌 경우: WebView
+  */
+
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      {/* 
-          어플 실행이 처음인 경우: Onboarding
-          어플 실행이 처음이 아닌 경우: WebView
-      */}
       <NavigationContainer
         ref={navigationRef}
         onReady={() => {
