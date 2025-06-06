@@ -227,10 +227,6 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
     }
   }, [photos]);
 
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
-
   if (!fontsLoaded) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -259,7 +255,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             <Image
               source={require("../assets/back_button.png")}
               style={{ width: 24, height: 24 }}
-              resizeMode="center"
+              resizeMode="contain"
             />
           </Pressable>
 
