@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03A0512B219647B8B64B9245 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5C86FBB1546D79FE5F206 /* noop-file.swift */; };
-		047151E48C9548C482AF49FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F11EB3FA9786458DB37E3B4A /* GoogleService-Info.plist */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1DF71CC15788B9F345A82A3B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C281E555A781BD04E153C897 /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
+		4AE5419B5D9A438683004B42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDBFE8C016E64409AF803BD2 /* GoogleService-Info.plist */; };
+		5865B274B3EAF3844FABCD7E /* Pods_kbuddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59AD55E2769138E4B02EB353 /* Pods_kbuddy.framework */; };
+		62C8D06B31567CD8DBC6A488 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 161F35B6D2D6225D136C42E6 /* PrivacyInfo.xcprivacy */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DCC1EA527A0FB363FA64E992 /* Pods_kbuddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A4BDFF3548D421FB267187 /* Pods_kbuddy.framework */; };
+		C280B427FBBE4A0F82B86526 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9C63F1695F4004B17F0FE9 /* noop-file.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,16 +26,16 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = kbuddy/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = kbuddy/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = kbuddy/main.m; sourceTree = "<group>"; };
-		5342C1C8CF2D43B6830F99E9 /* kbuddy-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "kbuddy-Bridging-Header.h"; path = "kbuddy/kbuddy-Bridging-Header.h"; sourceTree = "<group>"; };
+		161F35B6D2D6225D136C42E6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = kbuddy/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		59AD55E2769138E4B02EB353 /* Pods_kbuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kbuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-kbuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kbuddy.debug.xcconfig"; path = "Target Support Files/Pods-kbuddy/Pods-kbuddy.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-kbuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kbuddy.release.xcconfig"; path = "Target Support Files/Pods-kbuddy/Pods-kbuddy.release.xcconfig"; sourceTree = "<group>"; };
-		9DD5C86FBB1546D79FE5F206 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "kbuddy/noop-file.swift"; sourceTree = "<group>"; };
+		7A9C63F1695F4004B17F0FE9 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "kbuddy/noop-file.swift"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = kbuddy/SplashScreen.storyboard; sourceTree = "<group>"; };
+		AD059D000C7B4EE0BB5E4787 /* kbuddy-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "kbuddy-Bridging-Header.h"; path = "kbuddy/kbuddy-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C281E555A781BD04E153C897 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = kbuddy/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		CDBFE8C016E64409AF803BD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "kbuddy/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F11EB3FA9786458DB37E3B4A /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "kbuddy/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F3A4BDFF3548D421FB267187 /* Pods_kbuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kbuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-kbuddy/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCC1EA527A0FB363FA64E992 /* Pods_kbuddy.framework in Frameworks */,
+				5865B274B3EAF3844FABCD7E /* Pods_kbuddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,10 +61,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				F11EB3FA9786458DB37E3B4A /* GoogleService-Info.plist */,
-				9DD5C86FBB1546D79FE5F206 /* noop-file.swift */,
-				5342C1C8CF2D43B6830F99E9 /* kbuddy-Bridging-Header.h */,
-				C281E555A781BD04E153C897 /* PrivacyInfo.xcprivacy */,
+				CDBFE8C016E64409AF803BD2 /* GoogleService-Info.plist */,
+				7A9C63F1695F4004B17F0FE9 /* noop-file.swift */,
+				AD059D000C7B4EE0BB5E4787 /* kbuddy-Bridging-Header.h */,
+				161F35B6D2D6225D136C42E6 /* PrivacyInfo.xcprivacy */,
 			);
 			name = kbuddy;
 			sourceTree = "<group>";
@@ -73,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				F3A4BDFF3548D421FB267187 /* Pods_kbuddy.framework */,
+				59AD55E2769138E4B02EB353 /* Pods_kbuddy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,14 +150,14 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "kbuddy" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				DC0D46767C52B3C76669FA9B /* [Expo] Configure project */,
+				814FE1010F39A5668DF9EF5B /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				D6B46E41B5ED90F922F37E60 /* [CP] Embed Pods Frameworks */,
-				506E6CB94049A90895CCC5C3 /* [CP-User] [RNFB] Core Configuration */,
+				A1660EEDA7E137F19AAD9B23 /* [CP] Embed Pods Frameworks */,
+				214C6B3EFFF78C355D8D650F /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -207,8 +207,8 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				047151E48C9548C482AF49FC /* GoogleService-Info.plist in Resources */,
-				1DF71CC15788B9F345A82A3B /* PrivacyInfo.xcprivacy in Resources */,
+				4AE5419B5D9A438683004B42 /* GoogleService-Info.plist in Resources */,
+				62C8D06B31567CD8DBC6A488 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +252,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		506E6CB94049A90895CCC5C3 /* [CP-User] [RNFB] Core Configuration */ = {
+		214C6B3EFFF78C355D8D650F /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -329,25 +329,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kbuddy/Pods-kbuddy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6B46E41B5ED90F922F37E60 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-kbuddy/Pods-kbuddy-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kbuddy/Pods-kbuddy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC0D46767C52B3C76669FA9B /* [Expo] Configure project */ = {
+		814FE1010F39A5668DF9EF5B /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -366,6 +348,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-kbuddy/expo-configure-project.sh\"\n";
 		};
+		A1660EEDA7E137F19AAD9B23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kbuddy/Pods-kbuddy-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kbuddy/Pods-kbuddy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -376,7 +376,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				03A0512B219647B8B64B9245 /* noop-file.swift in Sources */,
+				C280B427FBBE4A0F82B86526 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

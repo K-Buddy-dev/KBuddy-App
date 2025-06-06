@@ -86,7 +86,12 @@
           "backgroundColor": "#6952f9",
           "image": "./assets/splash_icon.png",
           "resizeMode": "contain",
-          "imageWidth": 200
+          "android": {
+            "imageWidth": 100
+          },
+          "ios": {
+            "imageWidth": 200
+          }
         }
       ],
       ["expo-apple-authentication"],
