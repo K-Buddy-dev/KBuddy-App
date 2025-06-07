@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import crashlytics from "@react-native-firebase/crashlytics";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
@@ -38,6 +39,7 @@ export default function App() {
         await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (error) {
         console.warn(error);
+        crashlytics().recordError(error);
       } finally {
         setAppIsReady(true);
       }
