@@ -30,7 +30,7 @@ export default function App() {
         initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
         GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
 
-        await AsyncStorage.getItem("launched").then((value) => {
+        AsyncStorage.getItem("launched").then((value) => {
           if (value === null) {
             AsyncStorage.setItem("launched", "true");
             setFirstLaunch(true);
