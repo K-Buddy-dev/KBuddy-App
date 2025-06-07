@@ -8,17 +8,12 @@ import {
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect, useRef, useState } from "react";
+import BootSplash from "react-native-bootsplash";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
 
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
-
-// SplashScreen.preventAutoHideAsync();
-
-// SplashScreen.setOptions({
-//   fade: true,
-// });
 
 export default function App() {
   // Logic
@@ -28,64 +23,44 @@ export default function App() {
   const routeNameRef = useRef<string | null>(null);
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
-  // const [appIsReady, setAppIsReady] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   const prepare = async () => {
-  //     try {
-  //       await new Promise((resolve) => setTimeout(resolve, 2000));
-  //     } catch (error) {
-  //       console.warn(error);
-  //       crashlytics().recordError(error);
-  //     } finally {
-  //       setAppIsReady(true);
-  //     }
-  //   };
-
-  //   prepare();
-  // }, []);
 
   useEffect(() => {
-    initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
-  }, []);
+    const init = async () => {
+      try {
+        initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
+        GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
 
-  useEffect(() => {
-    GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
-  }, []);
-
-  useEffect(() => {
-    AsyncStorage.getItem("launched").then((value) => {
-      if (value === null) {
-        AsyncStorage.setItem("launched", "true");
-        setFirstLaunch(true);
-      } else {
-        setFirstLaunch(false);
+        await AsyncStorage.getItem("launched").then((value) => {
+          if (value === null) {
+            AsyncStorage.setItem("launched", "true");
+            setFirstLaunch(true);
+          } else {
+            setFirstLaunch(false);
+          }
+        });
+      } catch (error) {
+        console.log("앱 로딩 에러:", error);
+      } finally {
+        setTimeout(() => {
+          BootSplash.hide({ fade: true });
+        }, 3000);
       }
-    });
+    };
+
+    init();
   }, []);
-
-  // const onLayoutRootView = useCallback(() => {
-  //   if (appIsReady) {
-  //     SplashScreen.hide();
-  //   }
-  // }, [appIsReady]);
-
-  // if (!appIsReady || firstLaunch === null) {
-  //   return null;
-  // }
 
   if (firstLaunch === null) {
     return null;
   }
 
-  // View
   /* 
       어플 실행이 처음인 경우: Onboarding
       어플 실행이 처음이 아닌 경우: WebView
   */
 
+  // View
   return (
-    // <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
     <NavigationContainer
       ref={navigationRef}
       onReady={() => {
@@ -124,6 +99,5 @@ export default function App() {
         <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-    // </View>
   );
 }

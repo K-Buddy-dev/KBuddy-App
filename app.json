@@ -82,7 +82,9 @@
       ],
       ["@react-native-google-signin/google-signin"],
       ["expo-apple-authentication"],
-      "expo-font"
+      ["react-native-bootsplash", { "assetsDir": "assets/bootsplash" }],
+      "expo-font",
+      "react-native-bootsplash"
     ],
     "web": {
       "favicon": "./assets/favicon.png"
