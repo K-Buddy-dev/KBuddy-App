@@ -29,25 +29,25 @@ export default function App() {
       try {
         initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
         GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
-
-        AsyncStorage.getItem("launched").then((value) => {
-          if (value === null) {
-            AsyncStorage.setItem("launched", "true");
-            setFirstLaunch(true);
-          } else {
-            setFirstLaunch(false);
-          }
-        });
       } catch (error) {
         console.log("앱 로딩 에러:", error);
       } finally {
-        setTimeout(() => {
-          BootSplash.hide({ fade: true });
-        }, 3000);
+        BootSplash.hide({ fade: true }).then(console.log).catch(console.log);
+        console.log("🚀 스플래쉬 스크린 종료됨.");
       }
     };
-
     init();
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.getItem("launched").then((value) => {
+      if (value === null) {
+        AsyncStorage.setItem("launched", "true");
+        setFirstLaunch(true);
+      } else {
+        setFirstLaunch(false);
+      }
+    });
   }, []);
 
   if (firstLaunch === null) {
