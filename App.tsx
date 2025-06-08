@@ -55,21 +55,6 @@ export default function App() {
     }
   }, [appIsReady]);
 
-  // useEffect(() => {
-  //   const init = async () => {
-  //     try {
-  //       initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
-  //       GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
-  //     } catch (error) {
-  //       console.log("앱 로딩 에러:", error);
-  //     } finally {
-  //       BootSplash.hide({ fade: true }).then(console.log).catch(console.log);
-  //       console.log("🚀 스플래쉬 스크린 종료됨.");
-  //     }
-  //   };
-  //   init();
-  // }, []);
-
   useEffect(() => {
     AsyncStorage.getItem("launched").then((value) => {
       if (value === null) {
