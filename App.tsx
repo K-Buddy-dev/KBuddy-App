@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
-import crashlytics from "@react-native-firebase/crashlytics";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
@@ -8,20 +7,13 @@ import {
   useNavigationContainerRef,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import BootSplash from "react-native-bootsplash";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
 
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
-
-SplashScreen.preventAutoHideAsync();
-
-SplashScreen.setOptions({
-  fade: true,
-});
 
 export default function App() {
   // Logic
@@ -31,29 +23,20 @@ export default function App() {
   const routeNameRef = useRef<string | null>(null);
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
-  const [appIsReady, setAppIsReady] = useState<boolean>(false);
 
   useEffect(() => {
-    const prepare = async () => {
+    const init = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
+        GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
       } catch (error) {
-        console.warn(error);
-        crashlytics().recordError(error);
+        console.log("앱 로딩 에러:", error);
       } finally {
-        setAppIsReady(true);
+        BootSplash.hide({ fade: true }).then(console.log).catch(console.log);
+        console.log("🚀 스플래쉬 스크린 종료됨.");
       }
     };
-
-    prepare();
-  }, []);
-
-  useEffect(() => {
-    initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
-  }, []);
-
-  useEffect(() => {
-    GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
+    init();
   }, []);
 
   useEffect(() => {
@@ -67,62 +50,54 @@ export default function App() {
     });
   }, []);
 
-  const onLayoutRootView = useCallback(() => {
-    if (appIsReady) {
-      SplashScreen.hide();
-    }
-  }, [appIsReady]);
-
-  if (!appIsReady || firstLaunch === null) {
+  if (firstLaunch === null) {
     return null;
   }
 
-  // View
   /* 
       어플 실행이 처음인 경우: Onboarding
       어플 실행이 처음이 아닌 경우: WebView
   */
 
+  // View
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <NavigationContainer
-        ref={navigationRef}
-        onReady={() => {
-          if (navigationRef.current) {
-            routeNameRef.current =
-              navigationRef.current.getCurrentRoute()?.name || "WebView";
-          }
-        }}
-        onStateChange={async () => {
-          if (!navigationRef.current) return;
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        if (navigationRef.current) {
+          routeNameRef.current =
+            navigationRef.current.getCurrentRoute()?.name || "WebView";
+        }
+      }}
+      onStateChange={async () => {
+        if (!navigationRef.current) return;
 
-          const previousRouteName = routeNameRef.current;
-          const currentRoute = navigationRef.current.getCurrentRoute();
+        const previousRouteName = routeNameRef.current;
+        const currentRoute = navigationRef.current.getCurrentRoute();
 
-          if (!currentRoute || !currentRoute.name) return;
+        if (!currentRoute || !currentRoute.name) return;
 
-          const currentRouteName = currentRoute.name;
+        const currentRouteName = currentRoute.name;
 
-          if (previousRouteName !== currentRouteName) {
-            const analytics = getAnalytics();
+        if (previousRouteName !== currentRouteName) {
+          const analytics = getAnalytics();
 
-            await logScreenView(analytics, {
-              screen_name: currentRouteName,
-              screen_class: currentRouteName,
-            });
-          }
-          routeNameRef.current = currentRouteName;
-        }}
+          await logScreenView(analytics, {
+            screen_name: currentRouteName,
+            screen_class: currentRouteName,
+          });
+        }
+        routeNameRef.current = currentRouteName;
+      }}
+    >
+      <Stack.Navigator
+        initialRouteName={firstLaunch ? "OnBoarding" : "WebView"}
+        screenOptions={{ headerShown: false }}
       >
-        <Stack.Navigator
-          initialRouteName={firstLaunch ? "OnBoarding" : "WebView"}
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="WebView" component={WebViewScreen} />
-          <Stack.Screen name="Album" component={AlbumScreen} />
-          <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+        <Stack.Screen name="WebView" component={WebViewScreen} />
+        <Stack.Screen name="Album" component={AlbumScreen} />
+        <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
