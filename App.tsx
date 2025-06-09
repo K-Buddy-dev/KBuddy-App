@@ -35,7 +35,20 @@ export default function App() {
 
   useEffect(() => {
     const init = async () => {
+      if (!KAKAO_NATIVE_APP_KEY) {
+        console.log("KAKAO_NATIVE_APP_KEY: ", KAKAO_NATIVE_APP_KEY);
+        console.log("카카오 app key 호출 x");
+      }
+
+      if (!GOOGLE_CLIENT_ID) {
+        console.log("GOOGLE_CLIENT_ID: ", GOOGLE_CLIENT_ID);
+        console.log("구글 client id 호출 x");
+      }
+
       try {
+        console.log("KAKAO_NATIVE_APP_KEY: ", KAKAO_NATIVE_APP_KEY);
+        console.log("GOOGLE_CLIENT_ID: ", GOOGLE_CLIENT_ID);
+
         initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
         GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
         await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -50,8 +63,10 @@ export default function App() {
   }, []);
 
   const onLayoutRootView = useCallback(() => {
+    console.log(`useCallback 훅 내 appIsReady 값: ${appIsReady}`);
+
     if (appIsReady) {
-      SplashScreen.hide();
+      SplashScreen.hideAsync();
     }
   }, [appIsReady]);
 
@@ -66,7 +81,13 @@ export default function App() {
     });
   }, []);
 
-  if (!appIsReady || firstLaunch === null) {
+  if (!appIsReady) {
+    console.log(`조건식 appIsReady 값: ${appIsReady}`);
+    return null;
+  }
+
+  if (firstLaunch == null) {
+    console.log(`조건식 firstLaunch 값: ${appIsReady}`);
     return null;
   }
 
