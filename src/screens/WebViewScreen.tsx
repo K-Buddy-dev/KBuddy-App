@@ -15,6 +15,7 @@ import WebView from "react-native-webview";
 import {
   WebViewMessageEvent,
   WebViewNativeEvent,
+  WebViewNavigation,
 } from "react-native-webview/lib/WebViewTypes";
 import handleAppleLogin from "../auth/handleAppleLogin";
 import handleGoogleLogin from "../auth/handleGoogleLogin";
@@ -157,6 +158,9 @@ const WebViewScreen = () => {
           allowsBackForwardNavigationGestures={true}
           onContentProcessDidTerminate={() => {
             webviewRef.current?.reload();
+          }}
+          onNavigationStateChange={(navState: WebViewNavigation) => {
+            setNavState(navState);
           }}
         />
       </SafeAreaView>
