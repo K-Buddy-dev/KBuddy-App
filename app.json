@@ -80,9 +80,22 @@
           }
         }
       ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#6952f9",
+          "image": "./assets/splash_icon.png",
+          "resizeMode": "contain",
+          "android": {
+            "imageWidth": 100
+          },
+          "ios": {
+            "imageWidth": 100
+          }
+        }
+      ],
       ["@react-native-google-signin/google-signin"],
       ["expo-apple-authentication"],
-      ["react-native-bootsplash", { "assetsDir": "assets/bootsplash" }],
       "expo-font"
     ],
     "web": {

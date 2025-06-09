@@ -1,7 +1,4 @@
 #import "AppDelegate.h"
-// @generated begin bootsplash-header - expo prebuild (DO NOT MODIFY) sync-f0de804bd8ce3b43e3fbda77f5f6262b5152aa47
-#import "RNBootSplash.h"
-// @generated end bootsplash-header
 #import <Firebase/Firebase.h>
 
 #import <React/RCTBundleURLProvider.h>
@@ -69,10 +66,4 @@
   return [super application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
 }
 
-// @generated begin bootsplash-init - expo prebuild (DO NOT MODIFY) sync-3c3e56b1bdc9d588f00adaae0d33716e538c304c
-- (void)customizeRootView:(RCTRootView *)rootView {
-  [super customizeRootView:rootView];
-  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
-}
-// @generated end bootsplash-init
 @end
