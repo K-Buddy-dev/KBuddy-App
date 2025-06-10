@@ -86,6 +86,9 @@ const WebViewScreen = () => {
 
   useEffect(() => {
     function onKeyboardDidShow(e: KeyboardEvent) {
+      Platform.OS === "ios"
+        ? console.log("ios 키보드 높이값: ", e.endCoordinates.height)
+        : console.log("android 키보드 높이값: ", e.endCoordinates.height);
       setKeyboardHeight(e.endCoordinates.height);
     }
 
@@ -119,8 +122,6 @@ const WebViewScreen = () => {
           })
         );
       } else if (Platform.OS === "android") {
-        const notch_height = insets.top;
-        console.log("android 노치값: ", notch_height);
         webviewRef.current?.postMessage(
           JSON.stringify({
             action: "keyboardHeightData",
