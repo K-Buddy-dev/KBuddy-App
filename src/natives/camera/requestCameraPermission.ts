@@ -16,7 +16,7 @@ export const requestCameraPermission = async (
     const image = await takePhoto();
 
     if (image) {
-      webviewRef?.current?.postMessage(
+      webviewRef.current?.postMessage(
         JSON.stringify({ action: "albumData", album: image })
       );
       navigation?.goBack();
