@@ -8,6 +8,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  Platform,
   Pressable,
   SafeAreaView,
   Text,
@@ -51,14 +52,27 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
 
       const images = await convertBase64Uri(assets);
 
-      webviewRef.current?.postMessage(
-        JSON.stringify({
-          action: "albumData",
-          album: images,
-        })
-      );
+      Platform.OS === "ios"
+        ? console.log(
+            "ios 다중 이미지 데이터 앞부분:",
+            images.map((i) => i.substring(0, 100))
+          )
+        : console.log(
+            "android 다중 이미지 데이터 앞부분:",
+            images.map((i) => i.substring(0, 100))
+          );
 
-      navigation.goBack();
+      if (images) {
+        webviewRef.current?.postMessage(
+          JSON.stringify({
+            action: "albumData",
+            album: images,
+          })
+        );
+        navigation.goBack();
+      } else {
+        console.log("이미지 데이터 없음");
+      }
     } catch (error) {
       console.log("갤러리 이미지 전송 오류: ", error);
     }
