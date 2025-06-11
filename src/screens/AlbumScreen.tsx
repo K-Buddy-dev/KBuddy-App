@@ -134,7 +134,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             position: "relative",
           }}
           onPress={() => {
-            console.log(JSON.stringify(item, null, 5));
+            // console.log(JSON.stringify(item, null, 5));
             handleSelectImage(setSelectedPhotos, limit, item.id);
           }}
         >

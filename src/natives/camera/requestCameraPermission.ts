@@ -18,11 +18,11 @@ export const requestCameraPermission = async (
     Platform.OS === "ios"
       ? console.log(
           "ios 촬영 이미지 데이터 앞부분:",
-          image[0]?.substring(0, 100)
+          image?.map((i) => i.substring(0, 100))
         )
       : console.log(
           "android 촬영 이미지 데이터 앞부분:",
-          image[0]?.substring(0, 100)
+          image?.map((i) => i.substring(0, 100))
         );
 
     if (image) {
