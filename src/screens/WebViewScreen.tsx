@@ -170,6 +170,7 @@ const WebViewScreen = () => {
           onMessage={onMessage}
           webviewDebuggingEnabled={true}
           allowsBackForwardNavigationGestures={true}
+          startInLoadingState={true}
           onContentProcessDidTerminate={() => {
             webviewRef.current?.reload();
           }}

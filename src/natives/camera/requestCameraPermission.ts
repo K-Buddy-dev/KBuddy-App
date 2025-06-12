@@ -1,6 +1,6 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Camera } from "expo-camera";
-import { Alert, Linking } from "react-native";
+import { Alert, Linking, Platform } from "react-native";
 import WebView from "react-native-webview";
 import { takePhoto } from "./takePhoto";
 
@@ -15,11 +15,23 @@ export const requestCameraPermission = async (
 
     const image = await takePhoto();
 
-    if (image) {
-      webviewRef?.current?.postMessage(
+    Platform.OS === "ios"
+      ? console.log(
+          "ios 촬영 이미지 데이터 앞부분:",
+          image?.map((i) => i.substring(0, 100))
+        )
+      : console.log(
+          "android 촬영 이미지 데이터 앞부분:",
+          image?.map((i) => i.substring(0, 100))
+        );
+
+    if (image && navigation.canGoBack()) {
+      webviewRef.current?.postMessage(
         JSON.stringify({ action: "albumData", album: image })
       );
-      navigation?.goBack();
+      navigation.goBack();
+    } else {
+      console.log("이미지 데이터 x");
     }
   } else {
     const { status: newStatus } = await Camera.requestCameraPermissionsAsync();

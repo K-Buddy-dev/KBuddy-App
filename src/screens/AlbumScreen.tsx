@@ -5,11 +5,10 @@ import * as MediaLibrary from "expo-media-library";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   Dimensions,
   FlatList,
   Image,
-  Linking,
+  Platform,
   Pressable,
   SafeAreaView,
   Text,
@@ -18,6 +17,9 @@ import {
 import Container from "../components/Container";
 import useDidUpdate from "../hooks/useDidUpdate";
 import { requestCameraPermission } from "../natives/camera/requestCameraPermission";
+import { fetchPhotos } from "../natives/gallery/fetchPhotos";
+import { handleSelectImage } from "../natives/gallery/handleSelectImage";
+import { requesetMediaLibraryPermissions } from "../natives/gallery/requesetMediaLibraryPermission";
 import convertBase64Uri from "../utils/convertBase64Uri";
 
 type AlbumScreenProps = StackScreenProps<ROOT_NAVIGATION, "Album">;
@@ -42,71 +44,6 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
     "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
   });
 
-  const requesetMediaLibraryPermissions = async () => {
-    const { status } = await MediaLibrary.getPermissionsAsync();
-
-    if (status === "granted") {
-      console.log("갤러리 권한 허용됨");
-      loadPhotos();
-    } else {
-      const { status: newStatus } =
-        await MediaLibrary.requestPermissionsAsync();
-
-      if (newStatus !== "granted") {
-        Alert.alert(
-          "Gallery Permission Required",
-          "This app requires access to your photo library. Please enable photo permissions in your device settings.",
-          [
-            {
-              text: "Go to Settings",
-              onPress: () => Linking.openSettings(),
-            },
-          ]
-        );
-      }
-    }
-  };
-
-  const loadPhotos = async (cursor?: string | undefined) => {
-    try {
-      const {
-        assets,
-        endCursor: newEndCursor,
-        hasNextPage,
-      } = await MediaLibrary.getAssetsAsync({
-        mediaType: MediaLibrary.MediaType.photo,
-        first: 30,
-        after: cursor,
-      });
-
-      setPhotos((prev) => {
-        const existingIds = new Set(prev.map((p) => p.id));
-        const newAssets = assets.filter((a) => !existingIds.has(a.id));
-        return [...prev, ...newAssets];
-      });
-      setEndCursor(newEndCursor);
-      setHasNextPage(hasNextPage);
-    } catch (error) {
-      console.log("갤러리 이미지 로드 실패: ", error);
-    }
-  };
-
-  const handleSelectImage = (id: string) => {
-    setSelectedPhotos((prev) => {
-      const isSelected = prev.includes(id);
-
-      if (isSelected) {
-        return prev.filter((photoId) => photoId !== id);
-      }
-
-      if (prev.length >= limit) {
-        return prev;
-      }
-
-      return [...prev, id];
-    });
-  };
-
   const handleSendImageToWebView = async () => {
     try {
       const assets = await Promise.all(
@@ -115,14 +52,27 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
 
       const images = await convertBase64Uri(assets);
 
-      webviewRef.current?.postMessage(
-        JSON.stringify({
-          action: "albumData",
-          album: images,
-        })
-      );
+      Platform.OS === "ios"
+        ? console.log(
+            "ios 다중 이미지 데이터 앞부분:",
+            images.map((i) => i.substring(0, 100))
+          )
+        : console.log(
+            "android 다중 이미지 데이터 앞부분:",
+            images.map((i) => i.substring(0, 100))
+          );
 
-      navigation.goBack();
+      if (images) {
+        webviewRef.current?.postMessage(
+          JSON.stringify({
+            action: "albumData",
+            album: images,
+          })
+        );
+        navigation.goBack();
+      } else {
+        console.log("이미지 데이터 없음");
+      }
     } catch (error) {
       console.log("갤러리 이미지 전송 오류: ", error);
     }
@@ -184,8 +134,8 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             position: "relative",
           }}
           onPress={() => {
-            console.log(JSON.stringify(item, null, 5));
-            handleSelectImage(item.id);
+            // console.log(JSON.stringify(item, null, 5));
+            handleSelectImage(setSelectedPhotos, limit, item.id);
           }}
         >
           <Image
@@ -218,12 +168,12 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
   );
 
   useEffect(() => {
-    requesetMediaLibraryPermissions();
+    requesetMediaLibraryPermissions(setPhotos, setEndCursor, setHasNextPage);
   }, []);
 
   useDidUpdate(() => {
     if (!photos.length) {
-      loadPhotos();
+      fetchPhotos(setPhotos, setEndCursor, setHasNextPage);
     }
   }, [photos]);
 
@@ -271,7 +221,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             Recents
           </Text>
 
-          <Pressable onPress={handleSendImageToWebView}>
+          <Pressable onPress={() => handleSendImageToWebView()}>
             <Text
               style={{
                 fontFamily: "Roboto-Light",
@@ -301,7 +251,10 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             }
             keyExtractor={(_, index) => index.toString()}
             numColumns={colums}
-            onEndReached={() => hasNextPage && loadPhotos(endCursor)}
+            onEndReached={() =>
+              hasNextPage &&
+              fetchPhotos(setPhotos, setEndCursor, setHasNextPage, endCursor)
+            }
             onEndReachedThreshold={0.2}
           />
         </View>

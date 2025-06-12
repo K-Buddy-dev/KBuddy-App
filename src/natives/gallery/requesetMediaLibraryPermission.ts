@@ -1,14 +1,17 @@
 import * as MediaLibrary from "expo-media-library";
 import { Alert, Linking } from "react-native";
-import WebView from "react-native-webview";
+import { fetchPhotos } from "./fetchPhotos";
 
-export const requestMediaLibraryPermissions = async (
-  webviewRef?: React.RefObject<WebView<{}>>
+export const requesetMediaLibraryPermissions = async (
+  setPhotos: React.Dispatch<React.SetStateAction<MediaLibrary.Asset[]>>,
+  setEndCursor: React.Dispatch<React.SetStateAction<string | undefined>>,
+  setHasNextPage: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const { status } = await MediaLibrary.getPermissionsAsync();
 
   if (status === "granted") {
     console.log("갤러리 권한 허용됨");
+    fetchPhotos(setPhotos, setEndCursor, setHasNextPage);
   } else {
     const { status: newStatus } = await MediaLibrary.requestPermissionsAsync();
 
