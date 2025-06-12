@@ -25,11 +25,11 @@ export const requestCameraPermission = async (
           image?.map((i) => i.substring(0, 100))
         );
 
-    if (image) {
+    if (image && navigation.canGoBack()) {
       webviewRef.current?.postMessage(
         JSON.stringify({ action: "albumData", album: image })
       );
-      navigation?.goBack();
+      navigation.goBack();
     } else {
       console.log("이미지 데이터 x");
     }
