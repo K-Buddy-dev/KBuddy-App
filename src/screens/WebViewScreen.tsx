@@ -111,27 +111,14 @@ const WebViewScreen = () => {
   }, []);
 
   useEffect(() => {
-    if (isKeyboardOpen && keyboardHeight > 0) {
-      if (Platform.OS === "ios") {
-        const notch_height = insets.top;
-        console.log("ios 노치값: ", notch_height);
-        webviewRef.current?.postMessage(
-          JSON.stringify({
-            action: "keyboardHeightData",
-            height: keyboardHeight - notch_height,
-          })
-        );
-      } else if (Platform.OS === "android") {
-        webviewRef.current?.postMessage(
-          JSON.stringify({
-            action: "keyboardHeightData",
-            height: keyboardHeight,
-          })
-        );
-      }
-
-      setIsKeyboardOpen(false);
-    }
+    const notch_height = insets.bottom;
+    webviewRef.current?.postMessage(
+      JSON.stringify({
+        action: "keyboardHeightData",
+        height: keyboardHeight - notch_height,
+      })
+    );
+    setIsKeyboardOpen(false);
   }, [keyboardHeight, isKeyboardOpen]);
 
   useEffect(() => {
