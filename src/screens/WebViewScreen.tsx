@@ -5,13 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   BackHandler,
   Dimensions,
-  Keyboard,
-  KeyboardEvent,
-  Platform,
   SafeAreaView,
   StyleSheet,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
 import {
   WebViewMessageEvent,
@@ -33,11 +29,7 @@ const WebViewScreen = () => {
   const navigation = useNavigation<StackNavigationProp<ROOT_NAVIGATION>>();
 
   const [navState, setNavState] = useState<WebViewNativeEvent>();
-  const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState<boolean>(false);
   const webviewRef = useRef<WebView>(null);
-
-  const insets = useSafeAreaInsets();
 
   const onMessage = async (event: WebViewMessageEvent) => {
     try {
@@ -61,9 +53,6 @@ const WebViewScreen = () => {
           }
           navigation.navigate("Album", { limit, webviewRef });
           break;
-        case "getKeyboardHeight":
-          setIsKeyboardOpen(true);
-          break;
         case "getSocialLogin":
           switch (message.type) {
             case "Kakao":
@@ -83,43 +72,6 @@ const WebViewScreen = () => {
       console.error("onMessage Error:", error);
     }
   };
-
-  useEffect(() => {
-    function onKeyboardDidShow(e: KeyboardEvent) {
-      Platform.OS === "ios"
-        ? console.log("ios 키보드 높이값: ", e.endCoordinates.height)
-        : console.log("android 키보드 높이값: ", e.endCoordinates.height);
-      setKeyboardHeight(e.endCoordinates.height);
-    }
-
-    function onKeyboardDidHide() {
-      setKeyboardHeight(0);
-    }
-
-    const showSubscription = Keyboard.addListener(
-      "keyboardDidShow",
-      onKeyboardDidShow
-    );
-    const hideSubscription = Keyboard.addListener(
-      "keyboardDidHide",
-      onKeyboardDidHide
-    );
-    return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
-    };
-  }, []);
-
-  useEffect(() => {
-    const notch_height = insets.bottom;
-    webviewRef.current?.postMessage(
-      JSON.stringify({
-        action: "keyboardHeightData",
-        height: keyboardHeight - notch_height,
-      })
-    );
-    setIsKeyboardOpen(false);
-  }, [keyboardHeight, isKeyboardOpen]);
 
   useEffect(() => {
     const cangoBack = navState?.canGoBack;
