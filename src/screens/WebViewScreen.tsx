@@ -1,4 +1,3 @@
-import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useRef, useState } from "react";
@@ -84,11 +83,6 @@ const WebViewScreen = () => {
         return false;
       }
     };
-
-    navigation.setOptions({
-      headerLeft: () =>
-        cangoBack ? <HeaderBackButton onPress={onPress} /> : null,
-    });
 
     BackHandler.addEventListener("hardwareBackPress", onPress);
 
