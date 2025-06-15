@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useRef, useState } from "react";
 import {
+  Alert,
   BackHandler,
   Dimensions,
   SafeAreaView,
@@ -80,7 +81,24 @@ const WebViewScreen = () => {
         webviewRef.current?.goBack();
         return true;
       } else {
-        return false;
+        Alert.alert(
+          "K-Buddy",
+          "Are you sure you want to close the app?",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+              onPress: () => {},
+            },
+            {
+              text: "Yes",
+              style: "destructive",
+              onPress: () => BackHandler.exitApp(),
+            },
+          ],
+          { cancelable: true }
+        );
+        return true;
       }
     };
 
