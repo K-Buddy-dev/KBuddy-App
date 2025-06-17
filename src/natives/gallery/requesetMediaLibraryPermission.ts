@@ -15,7 +15,10 @@ export const requesetMediaLibraryPermissions = async (
   } else {
     const { status: newStatus } = await MediaLibrary.requestPermissionsAsync();
 
-    if (newStatus !== "granted") {
+    if (newStatus === "granted") {
+      console.log("갤러리 권한 허용됨");
+      fetchPhotos(setPhotos, setEndCursor, setHasNextPage);
+    } else {
       Alert.alert(
         "Gallery Permission Required",
         "This app requires access to your photo library. Please enable photo permissions in your device settings.",

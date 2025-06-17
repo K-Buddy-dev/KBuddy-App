@@ -24,7 +24,18 @@ export const requestCameraPermission = async (
   } else {
     const { status: newStatus } = await Camera.requestCameraPermissionsAsync();
 
-    if (newStatus !== "granted") {
+    if (newStatus === "granted") {
+      console.log("카메라 권한 허용됨");
+
+      const image = await takePhoto();
+
+      if (image && navigation.canGoBack()) {
+        webviewRef.current?.postMessage(
+          JSON.stringify({ action: "albumData", album: image })
+        );
+        navigation.goBack();
+      }
+    } else {
       Alert.alert(
         "Camera Permission Required",
         "This app requires access to your camera. Please enable camera permissions in your device settings.",
