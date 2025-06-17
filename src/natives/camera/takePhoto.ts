@@ -9,19 +9,19 @@ export const takePhoto = async () => {
   });
 
   if (!photo.canceled && photo.assets?.length > 0) {
-    const original_photo = photo.assets[0];
-    const resized_photo = await ImageManipulator.manipulateAsync(
-      original_photo.uri,
-      [{ resize: { width: 800 } }],
-      { compress: 0.5, format: ImageManipulator.SaveFormat.JPEG, base64: true }
-    );
+    const result = photo.assets.map(async (p) => {
+      await ImageManipulator.manipulateAsync(
+        p.uri,
+        [{ resize: { width: 800 } }],
+        {
+          compress: 0.5,
+          format: ImageManipulator.SaveFormat.JPEG,
+          base64: true,
+        }
+      );
+    });
 
-    return [`data:image/jpeg;base64,${resized_photo.base64}`];
-    // const result = photo.assets.map((p) => {
-    //   return `data:${p.mimeType};base64,${p.base64}`;
-    // });
-
-    // return result;
+    return result;
   }
 
   return null;

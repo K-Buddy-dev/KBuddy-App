@@ -154,6 +154,21 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
     []
   );
 
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        navigation.goBack();
+        return true;
+      };
+
+      BackHandler.addEventListener("hardwareBackPress", onBackPress);
+
+      return () => {
+        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
+      };
+    }, [navigation])
+  );
+
   useEffect(() => {
     requesetMediaLibraryPermissions(setPhotos, setEndCursor, setHasNextPage);
   }, []);
@@ -171,21 +186,6 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
       </View>
     );
   }
-
-  useFocusEffect(
-    useCallback(() => {
-      const onBackPress = () => {
-        navigation.goBack();
-        return true;
-      };
-
-      BackHandler.addEventListener("hardwareBackPress", onBackPress);
-
-      return () => {
-        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
-      };
-    }, [navigation])
-  );
 
   // View
   return (
