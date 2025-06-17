@@ -52,7 +52,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
 
       const images = await convertBase64Uri(assets);
 
-      if (images) {
+      if (images && navigation.canGoBack()) {
         webviewRef.current?.postMessage(
           JSON.stringify({
             action: "albumData",
