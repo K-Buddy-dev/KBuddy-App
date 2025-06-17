@@ -1,14 +1,14 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { useFonts } from "expo-font";
 import * as MediaLibrary from "expo-media-library";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  BackHandler,
   Dimensions,
   FlatList,
   Image,
-  Platform,
   Pressable,
   SafeAreaView,
   Text,
@@ -52,17 +52,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
 
       const images = await convertBase64Uri(assets);
 
-      Platform.OS === "ios"
-        ? console.log(
-            "ios 다중 이미지 데이터 앞부분:",
-            images.map((i) => i.substring(0, 100))
-          )
-        : console.log(
-            "android 다중 이미지 데이터 앞부분:",
-            images.map((i) => i.substring(0, 100))
-          );
-
-      if (images) {
+      if (images && navigation.canGoBack()) {
         webviewRef.current?.postMessage(
           JSON.stringify({
             action: "albumData",
@@ -70,8 +60,6 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
           })
         );
         navigation.goBack();
-      } else {
-        console.log("이미지 데이터 없음");
       }
     } catch (error) {
       console.log("갤러리 이미지 전송 오류: ", error);
@@ -134,7 +122,6 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
             position: "relative",
           }}
           onPress={() => {
-            // console.log(JSON.stringify(item, null, 5));
             handleSelectImage(setSelectedPhotos, limit, item.id);
           }}
         >
@@ -165,6 +152,21 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
       );
     },
     []
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        navigation.goBack();
+        return true;
+      };
+
+      BackHandler.addEventListener("hardwareBackPress", onBackPress);
+
+      return () => {
+        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
+      };
+    }, [navigation])
   );
 
   useEffect(() => {

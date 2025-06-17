@@ -1,4 +1,4 @@
-import * as FileSystem from "expo-file-system";
+import * as ImageManipulator from "expo-image-manipulator";
 import * as MediaLibrary from "expo-media-library";
 
 const convertBase64Uri = async (assets: MediaLibrary.Asset[]) => {
@@ -10,12 +10,18 @@ const convertBase64Uri = async (assets: MediaLibrary.Asset[]) => {
       const localUri = assetInfo.localUri;
 
       if (localUri) {
-        const base64Data = await FileSystem.readAsStringAsync(localUri, {
-          encoding: FileSystem.EncodingType.Base64,
-        });
+        const images = await ImageManipulator.manipulateAsync(
+          localUri,
+          [{ resize: { width: 800 } }],
+          {
+            compress: 0.5,
+            format: ImageManipulator.SaveFormat.JPEG,
+            base64: true,
+          }
+        );
 
-        const imagData = `data:image/jpeg;base64,${base64Data}`;
-        imageFiles.push(imagData);
+        const result = `data:image/jpeg;base64,${images.base64}`;
+        imageFiles.push(result);
       }
     } catch (error) {
       console.log(`갤러리 이미지 변환 오류: `, error);
