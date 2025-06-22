@@ -1,3 +1,4 @@
+import { getUpdateSource, HotUpdater } from "@hot-updater/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -9,7 +10,7 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -23,7 +24,7 @@ SplashScreen.setOptions({
 
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
 
-export default function App() {
+function App() {
   // Logic
   const KAKAO_NATIVE_APP_KEY = process.env.EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY;
   const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID;
@@ -133,3 +134,35 @@ export default function App() {
     </View>
   );
 }
+
+export default HotUpdater.wrap({
+  source: getUpdateSource(
+    "https://hot-updater-bbtqvmqjxq-du.a.run.app/api/check-update",
+    {
+      updateStrategy: "fingerprint",
+    }
+  ),
+  fallbackComponent: ({ progress, status }) => (
+    <View
+      style={{
+        flex: 1,
+        padding: 20,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+      }}
+    >
+      {/* You can put a splash image here. */}
+
+      <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
+        {status === "UPDATING" ? "Updating..." : "Checking for Update..."}
+      </Text>
+      {progress > 0 ? (
+        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
+          {Math.round(progress * 100)}%
+        </Text>
+      ) : null}
+    </View>
+  ),
+})(App);
