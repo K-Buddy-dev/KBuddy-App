@@ -94,6 +94,12 @@
           }
         }
       ],
+      [
+        "@hot-updater/react-native",
+        {
+          "channel": "production"
+        }
+      ],
       ["@react-native-google-signin/google-signin"],
       ["expo-apple-authentication"],
       "expo-font"
