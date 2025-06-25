@@ -1,4 +1,4 @@
-import { bare } from "@hot-updater/bare";
+import { expo } from "@hot-updater/expo";
 import { firebaseDatabase, firebaseStorage } from "@hot-updater/firebase";
 import "dotenv/config";
 import * as admin from "firebase-admin";
@@ -11,16 +11,14 @@ import { defineConfig } from "hot-updater";
 const credential = admin.credential.applicationDefault();
 
 export default defineConfig({
-  build: bare({
-    enableHermes: true,
-  }),
+  build: expo(),
   storage: firebaseStorage({
-    projectId: process.env.EXPO_PUBLIC_HOT_UPDATER_FIREBASE_PROJECT_ID!,
-    storageBucket: process.env.EXPO_PUBLIC_HOT_UPDATER_FIREBASE_STORAGE_BUCKET!,
+    projectId: process.env.HOT_UPDATER_FIREBASE_PROJECT_ID!,
+    storageBucket: process.env.HOT_UPDATER_FIREBASE_STORAGE_BUCKET!,
     credential,
   }),
   database: firebaseDatabase({
-    projectId: process.env.EXPO_PUBLIC_HOT_UPDATER_FIREBASE_PROJECT_ID!,
+    projectId: process.env.HOT_UPDATER_FIREBASE_PROJECT_ID!,
     credential,
   }),
 });

@@ -39,3 +39,7 @@ yarn-error.*
 
 # hot-updater
 service-account-file.json
+
+# google service
+google-services.json
+GoogleService-Info.plist
