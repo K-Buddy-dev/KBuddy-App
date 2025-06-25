@@ -16,7 +16,8 @@
         "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
         "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos.",
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "appleTeamId": "PN765X482W"
     },
     "android": {
       "package": "com.example.kbuddy",
@@ -30,17 +31,16 @@
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.ACCESS_MEDIA_LOCATION",
-        "android.permission.RECORD_AUDIO",
-        "android.permission.CAMERA",
-        "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE",
-        "android.permission.ACCESS_MEDIA_LOCATION",
         "android.permission.RECORD_AUDIO"
       ]
     },
     "plugins": [
-      ["@react-native-firebase/app"],
-      ["@react-native-firebase/crashlytics"],
+      [
+        "@react-native-firebase/app"
+      ],
+      [
+        "@react-native-firebase/crashlytics"
+      ],
       [
         "expo-camera",
         {
@@ -100,8 +100,12 @@
           "channel": "production"
         }
       ],
-      ["@react-native-google-signin/google-signin"],
-      ["expo-apple-authentication"],
+      [
+        "@react-native-google-signin/google-signin"
+      ],
+      [
+        "expo-apple-authentication"
+      ],
       "expo-font"
     ],
     "web": {

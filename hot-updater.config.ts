@@ -13,12 +13,12 @@ const credential = admin.credential.applicationDefault();
 export default defineConfig({
   build: expo(),
   storage: firebaseStorage({
-    projectId: process.env.EXPO_PUBLIC_HOT_UPDATER_FIREBASE_PROJECT_ID!,
-    storageBucket: process.env.EXPO_PUBLIC_HOT_UPDATER_FIREBASE_STORAGE_BUCKET!,
+    projectId: process.env.HOT_UPDATER_FIREBASE_PROJECT_ID!,
+    storageBucket: process.env.HOT_UPDATER_FIREBASE_STORAGE_BUCKET!,
     credential,
   }),
   database: firebaseDatabase({
-    projectId: process.env.EXPO_PUBLIC_GOOGLE_APPLICATION_CREDENTIALS!,
+    projectId: process.env.HOT_UPDATER_FIREBASE_PROJECT_ID!,
     credential,
   }),
 });

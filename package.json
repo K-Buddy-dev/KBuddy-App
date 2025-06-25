@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@hot-updater/expo": "^0.19.6",
+    "@hot-updater/expo": "^0.19.8",
     "@hot-updater/firebase": "^0.19.6",
     "@react-native-community/cli": "latest",
     "@types/react": "~18.3.12",
