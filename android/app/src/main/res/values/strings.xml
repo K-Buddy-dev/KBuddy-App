@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">k-buddy</string>
-    <string name="expo_runtime_version">1.0.0</string>
-    <string name="hot_updater_channel" moduleConfig="true">production</string>
-    <string name="hot_updater_fingerprint_hash" moduleConfig="true">355a9a218e18b7239c70db0fe57b58f533e1635d</string>
-    <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
-    <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="app_name">k-buddy</string>
+  <string name="expo_runtime_version">1.0.0</string>
+  <string name="hot_updater_channel" moduleConfig="true">production</string>
+  <string name="hot_updater_fingerprint_hash" moduleConfig="true">02222bf1d347e52ca1b8a2fa7fafc379d0045855</string>
+  <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
+  <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
 </resources>

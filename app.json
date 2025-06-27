@@ -35,12 +35,8 @@
       ]
     },
     "plugins": [
-      [
-        "@react-native-firebase/app"
-      ],
-      [
-        "@react-native-firebase/crashlytics"
-      ],
+      ["@react-native-firebase/app"],
+      ["@react-native-firebase/crashlytics"],
       [
         "expo-camera",
         {
@@ -100,12 +96,8 @@
           "channel": "production"
         }
       ],
-      [
-        "@react-native-google-signin/google-signin"
-      ],
-      [
-        "expo-apple-authentication"
-      ],
+      ["@react-native-google-signin/google-signin"],
+      ["expo-apple-authentication"],
       "expo-font"
     ],
     "web": {
