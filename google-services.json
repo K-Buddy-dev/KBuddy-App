@@ -14,13 +14,41 @@
       },
       "oauth_client": [
         {
-          "client_id": "105344699730-28nc5if7or3ajm182m1e208rtnr9mvg0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.kbuddy",
-            "certificate_hash": "b84650c53fa1c04d070d2bb44e86cd4798da6bc2"
-          }
-        },
+          "client_id": "105344699730-viemcgbnjah9m7olre3nmjnle6jtjfeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevArtyQ6tWzRAjUw8GHgGricLS8Xz7sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105344699730-i4mfie262gj4n5776h7adm1gfknd51k8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamkbuddy.kbuddy"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105344699730:android:9a01e24d76d7137832be8b",
+        "android_client_info": {
+          "package_name": "com.teamkbuddy.kbuddy"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "105344699730-viemcgbnjah9m7olre3nmjnle6jtjfeb.apps.googleusercontent.com",
           "client_type": 3
@@ -39,10 +67,10 @@
               "client_type": 3
             },
             {
-              "client_id": "105344699730-2a6g4slc4nosldbgrmcbpbhqkgehcsel.apps.googleusercontent.com",
+              "client_id": "105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.kbuddy"
+                "bundle_id": "com.teamkbuddy.kbuddy"
               }
             }
           ]

@@ -29,13 +29,13 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.example.kbuddy</string>
+          <string>com.teamkbuddy.kbuddy</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.googleusercontent.apps.105344699730-2a6g4slc4nosldbgrmcbpbhqkgehcsel</string>
+          <string>com.googleusercontent.apps.105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e</string>
         </array>
       </dict>
       <dict>
@@ -58,7 +58,7 @@
     <key>HOT_UPDATER_CHANNEL</key>
     <string>production</string>
     <key>HOT_UPDATER_FINGERPRINT_HASH</key>
-    <string>27a4dc94b292a6bda4c36c5fcb63f551d5c60117</string>
+    <string>a895df5aaa05538dac9daf70f05945c07a196445</string>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
     <key>LSApplicationQueriesSchemes</key>

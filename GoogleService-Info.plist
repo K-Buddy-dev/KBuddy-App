@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>105344699730-2a6g4slc4nosldbgrmcbpbhqkgehcsel.apps.googleusercontent.com</string>
+	<string>105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.105344699730-2a6g4slc4nosldbgrmcbpbhqkgehcsel</string>
+	<string>com.googleusercontent.apps.105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>105344699730-28nc5if7or3ajm182m1e208rtnr9mvg0.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCo71cMeDsGgvaitvgy2sdgWSeuyomMQz0</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.kbuddy</string>
+	<string>com.teamkbuddy.kbuddy</string>
 	<key>PROJECT_ID</key>
 	<string>k-buddy-dbd66</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:105344699730:ios:0887e605a7dfa10f32be8b</string>
+	<string>1:105344699730:ios:db1a399d1daa49f932be8b</string>
 </dict>
 </plist>

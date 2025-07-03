@@ -1,4 +1,4 @@
-package com.example.kbuddy
+package com.teamkbuddy.kbuddy
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build
