@@ -9,7 +9,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.example.kbuddy",
+      "bundleIdentifier": "com.teamkbuddy.kbuddy",
       "googleServicesFile": "./GoogleService-Info.plist",
       "usesAppleSignIn": true,
       "infoPlist": {
@@ -20,7 +20,7 @@
       "appleTeamId": "PN765X482W"
     },
     "android": {
-      "package": "com.example.kbuddy",
+      "package": "com.teamkbuddy.kbuddy",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
