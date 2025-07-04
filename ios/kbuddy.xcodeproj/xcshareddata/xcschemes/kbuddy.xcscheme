@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "kbuddy.app"
-               BlueprintName = "kbuddy"
-               ReferencedContainer = "container:kbuddy.xcodeproj">
+               BuildableName = "KBuddy.app"
+               BlueprintName = "KBuddy"
+               ReferencedContainer = "container:KBuddy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "kbuddyTests.xctest"
-               BlueprintName = "kbuddyTests"
-               ReferencedContainer = "container:kbuddy.xcodeproj">
+               BuildableName = "KBuddyTests.xctest"
+               BlueprintName = "KBuddyTests"
+               ReferencedContainer = "container:KBuddy.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "kbuddy.app"
-            BlueprintName = "kbuddy"
-            ReferencedContainer = "container:kbuddy.xcodeproj">
+            BuildableName = "KBuddy.app"
+            BlueprintName = "KBuddy"
+            ReferencedContainer = "container:KBuddy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "kbuddy.app"
-            BlueprintName = "kbuddy"
-            ReferencedContainer = "container:kbuddy.xcodeproj">
+            BuildableName = "KBuddy.app"
+            BlueprintName = "KBuddy"
+            ReferencedContainer = "container:KBuddy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

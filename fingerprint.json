@@ -39,7 +39,7 @@
         "reasons": [
           "easBuild"
         ],
-        "hash": "e7b503351afd55291b4c1f612d73297d339b9766"
+        "hash": "87baa64f9f4a85a3135388d6b8f35d94336fc57b"
       },
       {
         "type": "file",
@@ -1215,7 +1215,7 @@
         "reasons": [
           "bareNativeDir"
         ],
-        "hash": "fa3654f2ad657e20c7f36a646ab67ffe9574610b"
+        "hash": "f5c0c85a95538455f0f811074c84679a7d5bf672"
       },
       {
         "type": "dir",
@@ -1515,11 +1515,11 @@
       {
         "type": "contents",
         "id": "expoConfig",
-        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"Allow $(PRODUCT_NAME) to access your camera\",\"NSPhotoLibraryUsageDescription\":\"Allow $(PRODUCT_NAME) to access your photos.\"},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"k-buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"Allow $(PRODUCT_NAME) to access your camera\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"Allow $(PRODUCT_NAME) to access your photos.\",\"savePhotosPermission\":\"Allow $(PRODUCT_NAME) to save photos.\"}],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
+        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"Allow $(PRODUCT_NAME) to access your camera\",\"NSPhotoLibraryUsageDescription\":\"Allow $(PRODUCT_NAME) to access your photos.\"},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"K-Buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"Allow $(PRODUCT_NAME) to access your camera\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"Allow $(PRODUCT_NAME) to access your photos.\",\"savePhotosPermission\":\"Allow $(PRODUCT_NAME) to save photos.\"}],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
         "reasons": [
           "expoConfig"
         ],
-        "hash": "9d31c9d335c67256ab8436f001e8656cb7759651"
+        "hash": "069b57277bfad919ec00eb960d6e0bc4a238eff0"
       },
       {
         "type": "contents",
@@ -1549,7 +1549,7 @@
         "hash": "55019f8e3c61c118e6b07cc0b1a9a68480d3c1c0"
       }
     ],
-    "hash": "a895df5aaa05538dac9daf70f05945c07a196445"
+    "hash": "8e630fa3ca9770072271539ab2d53e2f7c4a721c"
   },
   "android": {
     "sources": [
@@ -1599,7 +1599,7 @@
         "reasons": [
           "easBuild"
         ],
-        "hash": "e7b503351afd55291b4c1f612d73297d339b9766"
+        "hash": "87baa64f9f4a85a3135388d6b8f35d94336fc57b"
       },
       {
         "type": "file",
@@ -2767,7 +2767,7 @@
         "reasons": [
           "bareNativeDir"
         ],
-        "hash": "5c4faf1e56e64ad5ffad09f5973637c91c98401c"
+        "hash": "403ce563dae4c8f8a8fefce7eba8fe650ea4e93a"
       },
       {
         "type": "dir",
@@ -3067,11 +3067,11 @@
       {
         "type": "contents",
         "id": "expoConfig",
-        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"Allow $(PRODUCT_NAME) to access your camera\",\"NSPhotoLibraryUsageDescription\":\"Allow $(PRODUCT_NAME) to access your photos.\"},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"k-buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"Allow $(PRODUCT_NAME) to access your camera\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"Allow $(PRODUCT_NAME) to access your photos.\",\"savePhotosPermission\":\"Allow $(PRODUCT_NAME) to save photos.\"}],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
+        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"Allow $(PRODUCT_NAME) to access your camera\",\"NSPhotoLibraryUsageDescription\":\"Allow $(PRODUCT_NAME) to access your photos.\"},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"K-Buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"Allow $(PRODUCT_NAME) to access your camera\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"Allow $(PRODUCT_NAME) to access your photos.\",\"savePhotosPermission\":\"Allow $(PRODUCT_NAME) to save photos.\"}],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
         "reasons": [
           "expoConfig"
         ],
-        "hash": "9d31c9d335c67256ab8436f001e8656cb7759651"
+        "hash": "069b57277bfad919ec00eb960d6e0bc4a238eff0"
       },
       {
         "type": "contents",
@@ -3101,6 +3101,6 @@
         "hash": "c9c11ee40a6a93280259cab5ca71eb9ef333fdbc"
       }
     ],
-    "hash": "4e6398debe6900e3b9ca83714a2f8ad487b75577"
+    "hash": "ff002a8e809d25634dfbfba3de140617ea36472b"
   }
 }
