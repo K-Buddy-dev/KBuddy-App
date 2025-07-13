@@ -13,8 +13,8 @@
       "googleServicesFile": "./GoogleService-Info.plist",
       "usesAppleSignIn": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
-        "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos.",
+        "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.",
+        "NSPhotoLibraryUsageDescription": "$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.",
         "ITSAppUsesNonExemptEncryption": false
       },
       "appleTeamId": "PN765X482W"
@@ -40,14 +40,14 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera"
+          "cameraPermission": "$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile."
         }
       ],
       [
         "expo-media-library",
         {
-          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
-          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+          "photosPermission": "$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.",
+          "savePhotosPermission": "$(PRODUCT_NAME) needs permission to save edited or captured images to your device.",
           "isAccessMediaLocationEnabled": true
         }
       ],
