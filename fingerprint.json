@@ -1215,7 +1215,7 @@
         "reasons": [
           "bareNativeDir"
         ],
-        "hash": "3266ca748479661bd40dc454d2294fa9d710862d"
+        "hash": "301dc710627a70b800e07ab7175f3727e0d64b48"
       },
       {
         "type": "dir",
@@ -1549,7 +1549,7 @@
         "hash": "55019f8e3c61c118e6b07cc0b1a9a68480d3c1c0"
       }
     ],
-    "hash": "5a9bc0198244501e4eb9bf45e6caacb7d1aad522"
+    "hash": "49616db7308788ce7f2bcc82204a5653495f8554"
   },
   "android": {
     "sources": [
