@@ -23,6 +23,8 @@ const handleAppleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
         oAuthUid: result.user,
         oAuthEmail: email,
         oAuthCategory: "APPLE",
+        familyName: result.fullName?.familyName,
+        givenName: result.fullName?.givenName,
       })
     );
   } catch (error) {
