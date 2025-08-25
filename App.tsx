@@ -11,7 +11,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Text, View } from "react-native";
-import getFcmToken from "./src/natives/notification/getFcmToken";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -48,24 +47,6 @@ function App() {
       try {
         initializeKakaoSDK(KAKAO_NATIVE_APP_KEY);
         GoogleSignin.configure({ iosClientId: GOOGLE_CLIENT_ID });
-        await getFcmToken()
-          .then((fcmtoken) => {
-            console.log(fcmtoken);
-
-            fetch("https://api.k-buddy.kr/api/v1/notifications/send", {
-              method: "POST",
-              body: JSON.stringify({
-                token: fcmtoken,
-                title: "Test",
-                body: "Test",
-              }),
-            })
-              .then((res) =>
-                console.log("fcm 테스트: ", JSON.stringify(res, null, 5))
-              )
-              .catch((err) => console.log("fcm 테스트 에러: ", err));
-          })
-          .catch((err) => console.log(err));
         await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (error) {
         console.warn(error);
