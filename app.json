@@ -15,7 +15,11 @@
       "infoPlist": {
         "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.",
         "NSPhotoLibraryUsageDescription": "$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.",
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIBackgroundModes": ["remote-notification"]
+      },
+      "entitlements": {
+        "aps-environment": "production"
       },
       "appleTeamId": "PN765X482W"
     },

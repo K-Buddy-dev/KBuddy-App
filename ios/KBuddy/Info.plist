@@ -58,7 +58,7 @@
 		<key>HOT_UPDATER_CHANNEL</key>
 		<string>production</string>
 		<key>HOT_UPDATER_FINGERPRINT_HASH</key>
-		<string>025d1af45af221b51f165278ec21c4abfa04a485</string>
+		<string>6487107b7d717472755677858ab71dd2bca0457a</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
 		<key>LSApplicationQueriesSchemes</key>
@@ -86,6 +86,10 @@
 		<string>$(PRODUCT_NAME) needs permission to save edited or captured images to your device.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>remote-notification</string>
+		</array>
 		<key>UILaunchStoryboardName</key>
 		<string>SplashScreen</string>
 		<key>UIRequiredDeviceCapabilities</key>
