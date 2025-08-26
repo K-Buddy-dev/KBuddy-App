@@ -491,6 +491,14 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/at-least-node/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "9c002b0e9446eff8a384d0a4b1c3494bb49a1e1f"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/braces/index.js",
         "reasons": [
           "expoConfigPlugins"
@@ -592,6 +600,14 @@
           "expoConfigPlugins"
         ],
         "hash": "09febad963c1a0905c93f4a7a4e099780847a322"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/crypto-random-string/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "44660e85ba1cc25f255d61b446be8f6a2c6d2ebe"
       },
       {
         "type": "file",
@@ -784,6 +800,46 @@
           "expoConfigPlugins"
         ],
         "hash": "aa684d132ba32eaf6e6d7727deb5d83f6c3851fb"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/app.plugin.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "69c5237da1b08ca20ef03f222acff8024d73f93c"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/package.json",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "f515ab90fe3f1a382fb5eb07dbc13194bb5169bc"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/plugin/build/withNotifications.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "2a9b6f7e9e39d69cc01769cb61b2e730818203f0"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/plugin/build/withNotificationsAndroid.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "ff35dd6be1960cf2caa589e5b1c8cf332897883b"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/plugin/build/withNotificationsIOS.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "382ffbc5a7739b938727faf3eff01196f20209a0"
       },
       {
         "type": "file",
@@ -1099,6 +1155,14 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/jimp-compact/dist/jimp.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "86e4211f72d6541f8b6f0d22665475623c8c8d45"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/jiti/dist/babel.js",
         "reasons": [
           "expoConfigPlugins"
@@ -1155,11 +1219,195 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/parse-png/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "2f1c3acbbfd093176bb46cd920f3d56ce7243a97"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/path-key/index.js",
         "reasons": [
           "expoConfigPlugins"
         ],
         "hash": "b3752b76e3e5051c5f021440d27958cf883f3136"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/bitmapper.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "291aaaaa3e3c04cb236a75492db902423e754a0d"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/bitpacker.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "7ed851c84a326fd119b82ae63aad3bd83bc4e5c4"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/chunkstream.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "a244fd0cc3cd6b81d39f829d2c6b8fea2188a4c8"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/constants.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "03736523a30bf4decf4170448aa01f9e274be32f"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/crc.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "0c0c88ba1e409be717d05548ffa85309067c4be5"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-pack.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "5cd5d74e78e1c0c7de1a5eee58d1d7473b45a6ab"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-parse-async.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "d15dc803a655baac0a8af93794a3767486d743c8"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-parse-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "fe65ba6a3316aa2dbad87ed4ff45a480795ad9bc"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-parse.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "1f6653a095a6476d32c9c1394abc191b65575bb0"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/format-normaliser.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "12253773689300111964ee8a5c2c57d7c917e76f"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/interlace.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "a4856511361e700acea4bd0287264462b229eba9"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/packer-async.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "3fe266198f090a4130f4ef8cf371cb2fc96d2a06"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/packer-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "b004dd84415f72f396a64550538c9d2c17b509b6"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/packer.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "22133015f4bd4bc7986070d831ae00674a4288cb"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/paeth-predictor.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "ede450ba76cf06f92be55c74301f690662317ae2"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/parser-async.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "974ef21f752be4f722e0d9e2bfd691ad9c960aa3"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/parser-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "e39c585a727f7a9754e27e848771602b7825b907"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/parser.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "ec2a91693f489b0223d0215e6472f9dff3a980f5"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/png-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "7ab25083cc73086821888f0dd64e4eec2555cbc1"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/png.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "64bfe21afba42a3d774655cea6ac8df9a6d87ce6"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/sync-inflate.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "9734df69b3fdfc43cb297654a01ce7ebbcd1b59c"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/sync-reader.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "c707120b37f53d149555abe065b12240322f167d"
       },
       {
         "type": "file",
@@ -1211,11 +1459,27 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/temp-dir/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "2aaf5ddf2a8d70195212544f9b9d53929a7df805"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/to-regex-range/index.js",
         "reasons": [
           "expoConfigPlugins"
         ],
         "hash": "b522adef7fd77cfdda9929f8773fc7d635439dcb"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/unique-string/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "74529391c5f6e3db0d067ac40557eb42f58a2360"
       },
       {
         "type": "file",
@@ -1247,7 +1511,7 @@
         "reasons": [
           "bareNativeDir"
         ],
-        "hash": "0a9496d74ea7e4821f0bbccf8f3ce9a12ba16e8f"
+        "hash": "7d84f3837669bc20ed97c3e2e0e0d3e431256170"
       },
       {
         "type": "dir",
@@ -1580,11 +1844,11 @@
       {
         "type": "contents",
         "id": "expoConfig",
-        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"entitlements\":{\"aps-environment\":\"production\"},\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\",\"NSPhotoLibraryUsageDescription\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"UIBackgroundModes\":[\"remote-notification\"]},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"K-Buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-firebase/messaging\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"savePhotosPermission\":\"$(PRODUCT_NAME) needs permission to save edited or captured images to your device.\"}],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
+        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"entitlements\":{\"aps-environment\":\"production\"},\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\",\"NSPhotoLibraryUsageDescription\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"UIBackgroundModes\":[\"remote-notification\"]},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"K-Buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-firebase/messaging\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"savePhotosPermission\":\"$(PRODUCT_NAME) needs permission to save edited or captured images to your device.\"}],[\"expo-notifications\"],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
         "reasons": [
           "expoConfig"
         ],
-        "hash": "5dba62616f526d10f7f85852ff7604faff2c4de8"
+        "hash": "9acfa47d0b56006f05ec7cdf2f53311e582b0613"
       },
       {
         "type": "contents",
@@ -1614,7 +1878,7 @@
         "hash": "fa1554a8765c7edc6085e903fd24e94275543386"
       }
     ],
-    "hash": "10acaf94ab05d3d367886b73f59d67be3fc20adb"
+    "hash": "9553b476927b67196ec768ec307ce6d82e6c0a76"
   },
   "android": {
     "sources": [
@@ -2108,6 +2372,14 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/at-least-node/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "9c002b0e9446eff8a384d0a4b1c3494bb49a1e1f"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/braces/index.js",
         "reasons": [
           "expoConfigPlugins"
@@ -2209,6 +2481,14 @@
           "expoConfigPlugins"
         ],
         "hash": "09febad963c1a0905c93f4a7a4e099780847a322"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/crypto-random-string/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "44660e85ba1cc25f255d61b446be8f6a2c6d2ebe"
       },
       {
         "type": "file",
@@ -2401,6 +2681,46 @@
           "expoConfigPlugins"
         ],
         "hash": "aa684d132ba32eaf6e6d7727deb5d83f6c3851fb"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/app.plugin.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "69c5237da1b08ca20ef03f222acff8024d73f93c"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/package.json",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "f515ab90fe3f1a382fb5eb07dbc13194bb5169bc"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/plugin/build/withNotifications.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "2a9b6f7e9e39d69cc01769cb61b2e730818203f0"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/plugin/build/withNotificationsAndroid.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "ff35dd6be1960cf2caa589e5b1c8cf332897883b"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/expo-notifications/plugin/build/withNotificationsIOS.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "382ffbc5a7739b938727faf3eff01196f20209a0"
       },
       {
         "type": "file",
@@ -2716,6 +3036,14 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/jimp-compact/dist/jimp.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "86e4211f72d6541f8b6f0d22665475623c8c8d45"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/jiti/dist/babel.js",
         "reasons": [
           "expoConfigPlugins"
@@ -2772,11 +3100,195 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/parse-png/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "2f1c3acbbfd093176bb46cd920f3d56ce7243a97"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/path-key/index.js",
         "reasons": [
           "expoConfigPlugins"
         ],
         "hash": "b3752b76e3e5051c5f021440d27958cf883f3136"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/bitmapper.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "291aaaaa3e3c04cb236a75492db902423e754a0d"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/bitpacker.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "7ed851c84a326fd119b82ae63aad3bd83bc4e5c4"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/chunkstream.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "a244fd0cc3cd6b81d39f829d2c6b8fea2188a4c8"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/constants.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "03736523a30bf4decf4170448aa01f9e274be32f"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/crc.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "0c0c88ba1e409be717d05548ffa85309067c4be5"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-pack.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "5cd5d74e78e1c0c7de1a5eee58d1d7473b45a6ab"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-parse-async.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "d15dc803a655baac0a8af93794a3767486d743c8"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-parse-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "fe65ba6a3316aa2dbad87ed4ff45a480795ad9bc"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/filter-parse.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "1f6653a095a6476d32c9c1394abc191b65575bb0"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/format-normaliser.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "12253773689300111964ee8a5c2c57d7c917e76f"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/interlace.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "a4856511361e700acea4bd0287264462b229eba9"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/packer-async.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "3fe266198f090a4130f4ef8cf371cb2fc96d2a06"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/packer-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "b004dd84415f72f396a64550538c9d2c17b509b6"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/packer.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "22133015f4bd4bc7986070d831ae00674a4288cb"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/paeth-predictor.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "ede450ba76cf06f92be55c74301f690662317ae2"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/parser-async.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "974ef21f752be4f722e0d9e2bfd691ad9c960aa3"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/parser-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "e39c585a727f7a9754e27e848771602b7825b907"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/parser.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "ec2a91693f489b0223d0215e6472f9dff3a980f5"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/png-sync.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "7ab25083cc73086821888f0dd64e4eec2555cbc1"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/png.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "64bfe21afba42a3d774655cea6ac8df9a6d87ce6"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/sync-inflate.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "9734df69b3fdfc43cb297654a01ce7ebbcd1b59c"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/pngjs/lib/sync-reader.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "c707120b37f53d149555abe065b12240322f167d"
       },
       {
         "type": "file",
@@ -2828,11 +3340,27 @@
       },
       {
         "type": "file",
+        "filePath": "node_modules/temp-dir/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "2aaf5ddf2a8d70195212544f9b9d53929a7df805"
+      },
+      {
+        "type": "file",
         "filePath": "node_modules/to-regex-range/index.js",
         "reasons": [
           "expoConfigPlugins"
         ],
         "hash": "b522adef7fd77cfdda9929f8773fc7d635439dcb"
+      },
+      {
+        "type": "file",
+        "filePath": "node_modules/unique-string/index.js",
+        "reasons": [
+          "expoConfigPlugins"
+        ],
+        "hash": "74529391c5f6e3db0d067ac40557eb42f58a2360"
       },
       {
         "type": "file",
@@ -3197,11 +3725,11 @@
       {
         "type": "contents",
         "id": "expoConfig",
-        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"entitlements\":{\"aps-environment\":\"production\"},\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\",\"NSPhotoLibraryUsageDescription\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"UIBackgroundModes\":[\"remote-notification\"]},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"K-Buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-firebase/messaging\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"savePhotosPermission\":\"$(PRODUCT_NAME) needs permission to save edited or captured images to your device.\"}],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
+        "contents": "{\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#ffffff\",\"foregroundImage\":\"./assets/adaptive-icon.png\"},\"package\":\"com.teamkbuddy.kbuddy\",\"permissions\":[\"android.permission.ACCESS_MEDIA_LOCATION\",\"android.permission.CAMERA\",\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.RECORD_AUDIO\",\"android.permission.WRITE_EXTERNAL_STORAGE\"]},\"androidStatusBar\":{\"backgroundColor\":\"#6952f9\"},\"extra\":{\"eas\":{\"projectId\":\"3310567e-85a4-46ef-9499-4a56486657a7\"}},\"icon\":\"./assets/app_icon.png\",\"ios\":{\"appleTeamId\":\"PN765X482W\",\"bundleIdentifier\":\"com.teamkbuddy.kbuddy\",\"entitlements\":{\"aps-environment\":\"production\"},\"infoPlist\":{\"ITSAppUsesNonExemptEncryption\":false,\"NSCameraUsageDescription\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\",\"NSPhotoLibraryUsageDescription\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"UIBackgroundModes\":[\"remote-notification\"]},\"supportsTablet\":true,\"usesAppleSignIn\":true},\"name\":\"K-Buddy\",\"newArchEnabled\":true,\"orientation\":\"portrait\",\"platforms\":[\"android\",\"ios\"],\"plugins\":[\"expo-font\",[\"@hot-updater/react-native\",{\"channel\":\"production\"}],[\"@react-native-firebase/app\"],[\"@react-native-firebase/crashlytics\"],[\"@react-native-firebase/messaging\"],[\"@react-native-google-signin/google-signin\"],[\"@react-native-kakao/core\",{\"android\":{\"authCodeHandlerActivity\":true},\"ios\":{\"handleKakaoOpenUrl\":true},\"nativeAppKey\":\"bafde7003969c3c49c0f935b8ae397c3\"}],[\"expo-apple-authentication\"],[\"expo-build-properties\",{\"android\":{\"extraMavenRepos\":[\"https://devrepo.kakao.com/nexus/content/groups/public/\"]},\"ios\":{\"useFrameworks\":\"static\"}}],[\"expo-camera\",{\"cameraPermission\":\"$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.\"}],[\"expo-media-library\",{\"isAccessMediaLocationEnabled\":true,\"photosPermission\":\"$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.\",\"savePhotosPermission\":\"$(PRODUCT_NAME) needs permission to save edited or captured images to your device.\"}],[\"expo-notifications\"],[\"expo-splash-screen\",{\"android\":{\"imageWidth\":100},\"backgroundColor\":\"#6952f9\",\"image\":\"./assets/splash_icon.png\",\"ios\":{\"imageWidth\":100},\"resizeMode\":\"contain\"}]],\"runtimeVersion\":\"1.0.0\",\"sdkVersion\":\"52.0.0\",\"slug\":\"k-buddy\",\"updates\":{\"url\":\"https://u.expo.dev/3310567e-85a4-46ef-9499-4a56486657a7\"},\"userInterfaceStyle\":\"light\",\"version\":\"1.0.0\",\"web\":{\"favicon\":\"./assets/favicon.png\"}}",
         "reasons": [
           "expoConfig"
         ],
-        "hash": "5dba62616f526d10f7f85852ff7604faff2c4de8"
+        "hash": "9acfa47d0b56006f05ec7cdf2f53311e582b0613"
       },
       {
         "type": "contents",
@@ -3231,6 +3759,6 @@
         "hash": "5ff61d3f6555e40f5999139b1b6951f7badde29c"
       }
     ],
-    "hash": "fe6f1e88c03813e7a8b28c919c1048910758a8c0"
+    "hash": "686b6e0ebbde8e173abfa8b0b2d67d793759366c"
   }
 }
