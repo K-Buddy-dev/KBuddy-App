@@ -8,9 +8,11 @@ import {
   useNavigationContainerRef,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -20,6 +22,14 @@ SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
   duration: 1000,
   fade: true,
+});
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true, // 배너 표시
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
 });
 
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
@@ -71,6 +81,37 @@ function App() {
         setFirstLaunch(false);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    async function initNotifications() {
+      if (Device.isDevice) {
+        // 권한 확인 및 요청
+        const { status: existingStatus } =
+          await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if (existingStatus !== "granted") {
+          const { status } = await Notifications.requestPermissionsAsync();
+          finalStatus = status;
+        }
+        if (finalStatus !== "granted") {
+          console.log("알림 권한 거부됨");
+          return;
+        }
+
+        // Android 알림 채널 생성
+        if (Platform.OS === "android") {
+          await Notifications.setNotificationChannelAsync("default", {
+            name: "default",
+            importance: Notifications.AndroidImportance.MAX,
+          });
+        }
+      } else {
+        console.log("실기기에서만 알림 작동");
+      }
+    }
+
+    initNotifications();
   }, []);
 
   if (!appIsReady) {
