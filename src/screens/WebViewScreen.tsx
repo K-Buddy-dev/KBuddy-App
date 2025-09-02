@@ -18,6 +18,7 @@ import handleAppleLogin from "../auth/handleAppleLogin";
 import handleGoogleLogin from "../auth/handleGoogleLogin";
 import handleKakaoLogin from "../auth/handleKakaoLogin";
 import Container from "../components/Container";
+import getFcmToken from "../natives/notification/getFcmToken";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -65,6 +66,22 @@ const WebViewScreen = () => {
               await handleAppleLogin(webviewRef);
               break;
           }
+        case "requestFcmToken":
+          const fcmToken = await getFcmToken();
+          if (!fcmToken) {
+            console.log("fcmToken 발급 x");
+            return;
+          }
+          try {
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "fcmTokenReady",
+                token: fcmToken,
+              })
+            );
+          } catch (error) {
+            console.log("fcmToken 전송 에러: ", error);
+          }
         default:
           break;
       }
@@ -72,39 +89,6 @@ const WebViewScreen = () => {
       console.error("onMessage Error:", error);
     }
   };
-
-  // const handleFcmTest = async () => {
-  //   const accessToken =
-  //     "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDgiLCJyb2xlIjoiTk9STUFMX1VTRVIiLCJpYXQiOjE3NTYyMTY2NjQsImV4cCI6MTc1NjIyMDI2NH0.1sceN18BKvWvi9VEdAG-msCnftRFT3fu8Y_-YWftMi8";
-
-  //   try {
-  //     const fcmToken = await getFcmToken();
-  //     console.log("fcm token: ", fcmToken);
-
-  //     const response = await axios.post(
-  //       "https://api.k-buddy.kr/api/v1/notifications/send",
-  //       {},
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //         params: {
-  //           token: fcmToken,
-  //           title: "Test",
-  //           body: "Test",
-  //         },
-  //       }
-  //     );
-
-  //     console.log("fcm 테스트 성공:", response.data);
-  //   } catch (err) {
-  //     console.log(
-  //       "fcm 테스트 실패:",
-  //       JSON.stringify(err.response?.data, null, 5)
-  //     );
-  //   }
-  // };
 
   useEffect(() => {
     const cangoBack = navState?.canGoBack;
