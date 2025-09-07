@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">K-Buddy</string>
+    <string name="expo_runtime_version">1.0.0</string>
+    <string name="hot_updater_channel" moduleConfig="true">production</string>
+    <string name="hot_updater_fingerprint_hash" moduleConfig="true">04e4f33b4acb64a1ce21480463f358ae91c71823</string>
+    <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
+    <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+</resources>

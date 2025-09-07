@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "105344699730",
+    "project_id": "k-buddy-dbd66",
+    "storage_bucket": "k-buddy-dbd66.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105344699730:android:59201fb67d079ff232be8b",
+        "android_client_info": {
+          "package_name": "com.example.kbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105344699730-viemcgbnjah9m7olre3nmjnle6jtjfeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevArtyQ6tWzRAjUw8GHgGricLS8Xz7sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105344699730-i4mfie262gj4n5776h7adm1gfknd51k8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamkbuddy.kbuddy"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105344699730:android:9a01e24d76d7137832be8b",
+        "android_client_info": {
+          "package_name": "com.teamkbuddy.kbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105344699730-viemcgbnjah9m7olre3nmjnle6jtjfeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevArtyQ6tWzRAjUw8GHgGricLS8Xz7sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105344699730-i4mfie262gj4n5776h7adm1gfknd51k8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamkbuddy.kbuddy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

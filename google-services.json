@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "105344699730",
+    "project_id": "k-buddy-dbd66",
+    "storage_bucket": "k-buddy-dbd66.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105344699730:android:59201fb67d079ff232be8b",
+        "android_client_info": {
+          "package_name": "com.example.kbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105344699730-viemcgbnjah9m7olre3nmjnle6jtjfeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevArtyQ6tWzRAjUw8GHgGricLS8Xz7sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105344699730-i4mfie262gj4n5776h7adm1gfknd51k8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamkbuddy.kbuddy"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105344699730:android:9a01e24d76d7137832be8b",
+        "android_client_info": {
+          "package_name": "com.teamkbuddy.kbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105344699730-fvdd9gikfd9topsgfocif8j0qdgpnd9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamkbuddy.kbuddy",
+            "certificate_hash": "2ab1456298b3d86f656a72a78a57fd0bb8d97fe4"
+          }
+        },
+        {
+          "client_id": "105344699730-m54nog3eikq4vl3lbq9e97d5k9vfolo3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamkbuddy.kbuddy",
+            "certificate_hash": "093f606ed17f9e06dac9c21dba3dbe35fa8483a0"
+          }
+        },
+        {
+          "client_id": "105344699730-viemcgbnjah9m7olre3nmjnle6jtjfeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevArtyQ6tWzRAjUw8GHgGricLS8Xz7sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105344699730-i4mfie262gj4n5776h7adm1gfknd51k8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "105344699730-rehqom4lhgjfv1qkrvkhafaousucsu3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamkbuddy.kbuddy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
