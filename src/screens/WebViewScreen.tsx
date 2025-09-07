@@ -18,6 +18,7 @@ import handleAppleLogin from "../auth/handleAppleLogin";
 import handleGoogleLogin from "../auth/handleGoogleLogin";
 import handleKakaoLogin from "../auth/handleKakaoLogin";
 import Container from "../components/Container";
+import getFcmToken from "../natives/notification/getFcmToken";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -64,6 +65,22 @@ const WebViewScreen = () => {
             case "Apple":
               await handleAppleLogin(webviewRef);
               break;
+          }
+        case "requestFcmToken":
+          const fcmToken = await getFcmToken();
+          if (!fcmToken) {
+            console.log("fcmToken 발급 x");
+            return;
+          }
+          try {
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "fcmTokenReady",
+                token: fcmToken,
+              })
+            );
+          } catch (error) {
+            console.log("fcmToken 전송 에러: ", error);
           }
         default:
           break;
@@ -129,6 +146,7 @@ const WebViewScreen = () => {
             setNavState(navState);
           }}
         />
+        {/* <Button title="test" onPress={handleFcmTest} /> */}
       </SafeAreaView>
     </Container>
   );
