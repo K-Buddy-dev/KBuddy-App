@@ -1,3 +1,4 @@
+import crashlytics from "@react-native-firebase/crashlytics";
 import * as AppleAuthentication from "expo-apple-authentication";
 import { jwtDecode } from "jwt-decode";
 import WebView from "react-native-webview";
@@ -28,7 +29,8 @@ const handleAppleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
       })
     );
   } catch (error) {
-    console.log(`login error: ${error}`);
+    crashlytics().recordError(error as Error);
+    console.log("애플 로그인 오류: ", error);
   }
 };
 
