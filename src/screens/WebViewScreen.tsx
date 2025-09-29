@@ -1,3 +1,4 @@
+import crashlytics from "@react-native-firebase/crashlytics";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useRef, useState } from "react";
@@ -88,7 +89,8 @@ const WebViewScreen = () => {
           break;
       }
     } catch (error) {
-      console.error("onMessage Error:", error);
+      crashlytics().recordError(error as Error);
+      console.error("onMessage 에러:", error);
     }
   };
 
@@ -148,7 +150,6 @@ const WebViewScreen = () => {
             setNavState(navState);
           }}
         />
-        {/* <Button title="test" onPress={handleFcmTest} /> */}
       </SafeAreaView>
     </Container>
   );
