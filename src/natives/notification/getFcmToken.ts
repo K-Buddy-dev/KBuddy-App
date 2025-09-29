@@ -1,3 +1,4 @@
+import crashlytics from "@react-native-firebase/crashlytics";
 import messaging from "@react-native-firebase/messaging";
 import requestNotificationPermission from "./requestNotificationPermission";
 
@@ -14,8 +15,8 @@ const getFcmToken = async () => {
 
     return fcmToken;
   } catch (error) {
-    console.log("Error getting FCM token: ", error);
-    return;
+    crashlytics().recordError(error as Error);
+    console.log("FCM Token 발급 오류: ", error);
   }
 };
 

@@ -1,3 +1,4 @@
+import crashlytics from "@react-native-firebase/crashlytics";
 import { login, me } from "@react-native-kakao/user";
 import WebView from "react-native-webview";
 
@@ -31,7 +32,8 @@ const handleKakaoLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
       );
     }
   } catch (error) {
-    console.log("kakao login error: ", error);
+    crashlytics().recordError(error as Error);
+    console.log("카카오 로그인 오류: ", error);
   }
 };
 

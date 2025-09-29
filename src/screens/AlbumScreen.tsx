@@ -1,3 +1,4 @@
+import crashlytics from "@react-native-firebase/crashlytics";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { useFonts } from "expo-font";
@@ -62,6 +63,7 @@ const AlbumScreen = ({ route }: AlbumScreenProps) => {
         navigation.goBack();
       }
     } catch (error) {
+      crashlytics().recordError(error as Error);
       console.log("갤러리 이미지 전송 오류: ", error);
     }
   };
