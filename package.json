@@ -45,8 +45,7 @@
     "react-native-webview": "13.12.5",
     "expo-notifications": "~0.29.14",
     "expo-device": "~7.0.3",
-    "expo-constants": "~17.0.8",
-    "expo-sharing": "~13.0.1"
+    "expo-constants": "~17.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
