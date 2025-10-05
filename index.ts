@@ -25,10 +25,10 @@ messaging().onMessage(async (remoteMessage) => {
       title: remoteMessage.notification?.title,
       body: remoteMessage.notification?.body,
       data: remoteMessage.data,
-      sound: "default", // 소리 추가
+      sound: "default",
       priority: Notifications.AndroidNotificationPriority.MAX,
     },
-    trigger: null, // 즉시 표시
+    trigger: null,
   });
 });
 
