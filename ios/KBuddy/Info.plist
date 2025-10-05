@@ -59,7 +59,7 @@
     <key>HOT_UPDATER_CHANNEL</key>
     <string>production</string>
     <key>HOT_UPDATER_FINGERPRINT_HASH</key>
-    <string>ca3508bb4027f6f83f29d09e861c2db13e09887b</string>
+    <string>39c275bb150a15e2503b44eaaa1265ef2ca0a1d0</string>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
     <key>LSApplicationQueriesSchemes</key>
