@@ -7,12 +7,18 @@ import App from "./App";
 
 // background message handler
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-  console.log("Background Message received:", remoteMessage);
+  console.log(
+    "Background Message received:",
+    JSON.stringify(remoteMessage, null, 5)
+  );
 });
 
 // foreground message handler
 messaging().onMessage(async (remoteMessage) => {
-  console.log("Foreground Message received:", remoteMessage);
+  console.log(
+    "Foreground Message received:",
+    JSON.stringify(remoteMessage, null, 5)
+  );
 
   await Notifications.scheduleNotificationAsync({
     content: {
