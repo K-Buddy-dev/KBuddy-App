@@ -1,6 +1,7 @@
 import { getUpdateSource, HotUpdater } from "@hot-updater/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import messaging from "@react-native-firebase/messaging";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
@@ -13,6 +14,7 @@ import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Platform, Text, View } from "react-native";
+import { ROOT_NAVIGATION } from "./src/@types/ROOT_NAVIGATION";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -26,9 +28,9 @@ SplashScreen.setOptions({
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
-    shouldShowAlert: true, // 배너 표시
+    shouldShowAlert: true,
     shouldPlaySound: true,
-    shouldSetBadge: false,
+    shouldSetBadge: true,
   }),
 });
 
@@ -38,11 +40,14 @@ function App() {
   // Logic
   const KAKAO_NATIVE_APP_KEY = process.env.EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY;
   const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID;
-  const navigationRef = useNavigationContainerRef();
+  const navigationRef = useNavigationContainerRef<ROOT_NAVIGATION>();
   const routeNameRef = useRef<string | null>(null);
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
   const [appIsReady, setAppIsReady] = useState<boolean>(false);
+
+  const notificationListener = useRef<Notifications.Subscription>();
+  const responseListener = useRef<Notifications.Subscription>();
 
   useEffect(() => {
     const init = async () => {
@@ -105,15 +110,103 @@ function App() {
             name: "default",
             importance: Notifications.AndroidImportance.MAX,
             vibrationPattern: [0, 250, 250, 250],
-            lightColor: "#FF231F7C",
+            lightColor: "#6952F9",
           });
         }
       } else {
         console.log("실기기에서만 알림 작동");
       }
+
+      // foreground 상태에서 알림이 도착했을 때
+      notificationListener.current =
+        Notifications.addNotificationReceivedListener((notification) => {
+          console.log("Notification received in foreground:", notification);
+        });
+
+      // expo-notifications로 표시된 알림 탭 (foreground에서 온 알림)
+      responseListener.current =
+        Notifications.addNotificationResponseReceivedListener((response) => {
+          console.log(
+            "Expo Notification tapped:",
+            JSON.stringify(response, null, 2)
+          );
+
+          const data = response.notification.request.content.data;
+
+          if (!data?.deep_link || !data?.click_action) {
+            console.log("알림 데이터가 올바르지 않습니다. data:", data);
+            return;
+          }
+
+          const notificationPayload = {
+            deep_link: String(data.deep_link),
+            click_action: String(data.click_action),
+          };
+
+          console.log("Foreground notification payload:", notificationPayload);
+
+          // WebView로 데이터 전달
+          if (navigationRef.current) {
+            navigationRef.current.navigate("WebView", {
+              notificationData: notificationPayload,
+            });
+          }
+        });
+
+      // Firebase Messaging: 백그라운드에서 앱이 열렸을 때
+      const unsubscribe = messaging().onNotificationOpenedApp(
+        (remoteMessage) => {
+          console.log(
+            "Notification caused app to open from background state:",
+            JSON.stringify(remoteMessage, null, 2)
+          );
+
+          if (
+            !remoteMessage.data?.deep_link ||
+            !remoteMessage.data?.click_action
+          ) {
+            console.log("알림 데이터가 올바르지 않습니다");
+            return;
+          }
+
+          const notificationPayload = {
+            deep_link: String(remoteMessage.data.deep_link),
+            click_action: String(remoteMessage.data.click_action),
+          };
+
+          console.log("Background notification payload:", notificationPayload);
+
+          // WebView로 데이터 전달
+          if (navigationRef.current) {
+            navigationRef.current.navigate("WebView", {
+              notificationData: notificationPayload,
+            });
+          }
+        }
+      );
+
+      return unsubscribe;
     }
 
-    initNotifications();
+    const unsubscribePromise = initNotifications();
+
+    return () => {
+      if (notificationListener.current) {
+        Notifications.removeNotificationSubscription(
+          notificationListener.current
+        );
+      }
+      if (responseListener.current) {
+        Notifications.removeNotificationSubscription(responseListener.current);
+      }
+
+      // Firebase Messaging 구독 해제
+      unsubscribePromise.then((unsubscribe) => {
+        if (unsubscribe) {
+          unsubscribe();
+        }
+      });
+    };
   }, []);
 
   if (!appIsReady) {
