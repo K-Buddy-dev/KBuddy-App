@@ -1,6 +1,7 @@
 import { getUpdateSource, HotUpdater } from "@hot-updater/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import messaging from "@react-native-firebase/messaging";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
@@ -122,14 +123,18 @@ function App() {
           console.log("Notification received in foreground:", notification);
         });
 
-      // 알림을 탭했을 때 (foreground, background 모두)
+      // expo-notifications로 표시된 알림 탭 (foreground에서 온 알림)
       responseListener.current =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          console.log("Notification tapped:", response);
+          console.log(
+            "Expo Notification tapped:",
+            JSON.stringify(response, null, 2)
+          );
+
           const data = response.notification.request.content.data;
 
           if (!data?.deep_link || !data?.click_action) {
-            console.log("알림 데이터가 올바르지 않습니다");
+            console.log("알림 데이터가 올바르지 않습니다. data:", data);
             return;
           }
 
@@ -138,27 +143,52 @@ function App() {
             click_action: String(data.click_action),
           };
 
+          console.log("Foreground notification payload:", notificationPayload);
+
           // WebView로 데이터 전달
           if (navigationRef.current) {
-            const currentRoute = navigationRef.current.getCurrentRoute();
-
-            // 이미 WebView 화면에 있다면
-            if (currentRoute?.name === "WebView") {
-              // 강제로 리렌더링을 위해 navigate 사용
-              navigationRef.current.navigate("WebView", {
-                notificationData: notificationPayload,
-              });
-            } else {
-              // 다른 화면에 있다면 WebView로 이동
-              navigationRef.current.navigate("WebView", {
-                notificationData: notificationPayload,
-              });
-            }
+            navigationRef.current.navigate("WebView", {
+              notificationData: notificationPayload,
+            });
           }
         });
+
+      // Firebase Messaging: 백그라운드에서 앱이 열렸을 때
+      const unsubscribe = messaging().onNotificationOpenedApp(
+        (remoteMessage) => {
+          console.log(
+            "Notification caused app to open from background state:",
+            JSON.stringify(remoteMessage, null, 2)
+          );
+
+          if (
+            !remoteMessage.data?.deep_link ||
+            !remoteMessage.data?.click_action
+          ) {
+            console.log("알림 데이터가 올바르지 않습니다");
+            return;
+          }
+
+          const notificationPayload = {
+            deep_link: String(remoteMessage.data.deep_link),
+            click_action: String(remoteMessage.data.click_action),
+          };
+
+          console.log("Background notification payload:", notificationPayload);
+
+          // WebView로 데이터 전달
+          if (navigationRef.current) {
+            navigationRef.current.navigate("WebView", {
+              notificationData: notificationPayload,
+            });
+          }
+        }
+      );
+
+      return unsubscribe;
     }
 
-    initNotifications();
+    const unsubscribePromise = initNotifications();
 
     return () => {
       if (notificationListener.current) {
@@ -169,6 +199,13 @@ function App() {
       if (responseListener.current) {
         Notifications.removeNotificationSubscription(responseListener.current);
       }
+
+      // Firebase Messaging 구독 해제
+      unsubscribePromise.then((unsubscribe) => {
+        if (unsubscribe) {
+          unsubscribe();
+        }
+      });
     };
   }, []);
 
