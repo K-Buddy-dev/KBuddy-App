@@ -45,19 +45,6 @@ messaging().onMessage(async (remoteMessage) => {
   });
 });
 
-// 앱이 종료된 상태에서 알림을 탭해서 실행된 경우
-messaging()
-  .getInitialNotification()
-  .then((remoteMessage) => {
-    if (remoteMessage) {
-      console.log(
-        "Notification caused app to open from quit state:",
-        JSON.stringify(remoteMessage, null, 5)
-      );
-      _initialNotificationData = remoteMessage.data;
-    }
-  });
-
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in Expo Go or in a native build,
 // the environment is set up appropriately
