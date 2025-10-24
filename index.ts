@@ -32,6 +32,18 @@ messaging().onMessage(async (remoteMessage) => {
   });
 });
 
+// terminated 상태에서 알림을 탭하여 앱이 열렸을 때
+messaging()
+  .getInitialNotification()
+  .then((remoteMessage) => {
+    if (remoteMessage) {
+      console.log(
+        "Terminated Message received: ",
+        JSON.stringify(remoteMessage, null, 5)
+      );
+    }
+  });
+
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in Expo Go or in a native build,
 // the environment is set up appropriately

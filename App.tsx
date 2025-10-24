@@ -44,6 +44,10 @@ function App() {
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
   const [appIsReady, setAppIsReady] = useState<boolean>(false);
 
+  const onLayoutRootView = useCallback(() => {
+    SplashScreen.hideAsync();
+  }, [appIsReady]);
+
   useEffect(() => {
     const init = async () => {
       if (!KAKAO_NATIVE_APP_KEY) {
@@ -67,10 +71,6 @@ function App() {
 
     init();
   }, []);
-
-  const onLayoutRootView = useCallback(() => {
-    SplashScreen.hideAsync();
-  }, [appIsReady]);
 
   useEffect(() => {
     AsyncStorage.getItem("launched").then((value) => {
