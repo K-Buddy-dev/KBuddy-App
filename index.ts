@@ -5,19 +5,6 @@ import "expo-dev-client";
 import * as Notifications from "expo-notifications";
 import App from "./App";
 
-// 푸시 알림 데이터를 저장할 변수
-let _initialNotificationData: any = null;
-
-// getter 함수
-export const getInitialNotificationData = () => {
-  return _initialNotificationData;
-};
-
-// setter 함수
-export const clearInitialNotificationData = () => {
-  _initialNotificationData = null;
-};
-
 // background message handler
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   console.log(
