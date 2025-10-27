@@ -1,6 +1,7 @@
 import { getUpdateSource, HotUpdater } from "@hot-updater/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import messaging from "@react-native-firebase/messaging";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
@@ -105,7 +106,7 @@ function App() {
             name: "default",
             importance: Notifications.AndroidImportance.MAX,
             vibrationPattern: [0, 250, 250, 250],
-            lightColor: "#FF231F7C",
+            lightColor: "#6952f9",
           });
         }
       } else {
@@ -114,6 +115,57 @@ function App() {
     }
 
     initNotifications();
+  }, []);
+
+  useEffect(() => {
+    // Foreground message handler
+    const unsubscribeForeground = messaging().onMessage(
+      async (remoteMessage) => {
+        console.log(
+          "Foreground Message received:",
+          JSON.stringify(remoteMessage, null, 5)
+        );
+
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: remoteMessage.notification?.title,
+            body: remoteMessage.notification?.body,
+            data: remoteMessage.data,
+            sound: "default",
+            priority: Notifications.AndroidNotificationPriority.MAX,
+          },
+          trigger: null,
+        });
+      }
+    );
+
+    // Push Notification Tap on Background Mode
+    const unsubscribeBackgroundOpended = messaging().onNotificationOpenedApp(
+      (remoteMessage) => {
+        console.log(
+          "Push Notification Tap:",
+          JSON.stringify(remoteMessage, null, 5)
+        );
+      }
+    );
+
+    // Quit mode
+    messaging()
+      .getInitialNotification()
+      .then((remoteMessage) => {
+        if (remoteMessage) {
+          console.log(
+            "Quit Message received:",
+            JSON.stringify(remoteMessage, null, 5)
+          );
+        }
+      })
+      .catch((error) => {});
+
+    return () => {
+      unsubscribeForeground();
+      unsubscribeBackgroundOpended();
+    };
   }, []);
 
   if (!appIsReady) {
