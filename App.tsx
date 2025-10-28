@@ -40,7 +40,10 @@ function App() {
   const KAKAO_NATIVE_APP_KEY = process.env.EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY;
   const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID;
   const navigationRef = useNavigationContainerRef<ROOT_NAVIGATION>();
+
   const routeNameRef = useRef<string | null>(null);
+  const notificationListener = useRef<Notifications.Subscription>();
+  const responseListener = useRef<Notifications.Subscription>();
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
   const [appIsReady, setAppIsReady] = useState<boolean>(false);
@@ -118,53 +121,32 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Foreground message handler
-    const unsubscribeForeground = messaging().onMessage(
-      async (remoteMessage) => {
-        console.log(
-          "Foreground Message received:",
-          JSON.stringify(remoteMessage, null, 5)
-        );
-
-        await Notifications.scheduleNotificationAsync({
-          content: {
-            title: remoteMessage.notification?.title,
-            body: remoteMessage.notification?.body,
-            data: remoteMessage.data,
-            sound: "default",
-            priority: Notifications.AndroidNotificationPriority.MAX,
-          },
-          trigger: null,
-        });
-      }
-    );
-
-    // Push Notification Tap on Background Mode
-    const unsubscribeBackgroundOpended = messaging().onNotificationOpenedApp(
-      (remoteMessage) => {
-        console.log(
-          "Push Notification Tap:",
-          JSON.stringify(remoteMessage, null, 5)
-        );
-      }
-    );
-
-    // Quit mode
-    messaging()
-      .getInitialNotification()
-      .then((remoteMessage) => {
-        if (remoteMessage) {
-          console.log(
-            "Quit Message received:",
-            JSON.stringify(remoteMessage, null, 5)
+    // Foreground Message Received
+    const unsubscribe = messaging().onMessage(async (notification) => {
+      Platform.OS === "ios"
+        ? console.log(
+            "Foreground Message Received on ios: ",
+            JSON.stringify(notification, null, 3)
+          )
+        : console.log(
+            "Foreground Message Received on android: ",
+            JSON.stringify(notification, null, 3)
           );
-        }
-      })
-      .catch((error) => {});
+
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: notification.notification?.title,
+          body: notification.notification?.body,
+          data: notification.data,
+          sound: "default",
+          priority: Notifications.AndroidNotificationPriority.MAX,
+        },
+        trigger: null,
+      });
+    });
 
     return () => {
-      unsubscribeForeground();
-      unsubscribeBackgroundOpended();
+      unsubscribe();
     };
   }, []);
 
