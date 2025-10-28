@@ -13,7 +13,7 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Platform, Text, View } from "react-native";
+import { Alert, Platform, Text, View } from "react-native";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -103,6 +103,13 @@ function App() {
           return;
         }
 
+        const response = await Notifications.getLastNotificationResponseAsync();
+        if (response === null) {
+          console.log("Tapped on Null: ", response);
+        } else {
+          console.log("Tapped on Android: ", response);
+        }
+
         // Android 알림 채널 생성
         if (Platform.OS === "android") {
           await Notifications.setNotificationChannelAsync("default", {
@@ -147,6 +154,35 @@ function App() {
 
     return () => {
       unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    // 사용자가 알림을 탭했을 때
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log("👆 User tapped notification:", response);
+
+        const notification = response.notification;
+        const title = notification.request.content.title;
+        const body = notification.request.content.body;
+        const data = notification.request.content.data;
+
+        // Alert로 알림 데이터 표시
+        Alert.alert(
+          "알림 데이터 확인",
+          `Title: ${title}\n\nBody: ${body}\n\nData: ${JSON.stringify(
+            data,
+            null,
+            2
+          )}`,
+          [{ text: "확인" }]
+        );
+      });
+
+    return () => {
+      responseListener.current &&
+        Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
 
