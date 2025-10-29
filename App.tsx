@@ -12,8 +12,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Alert, Platform, Text, View } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Platform, Text, View } from "react-native";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -103,13 +103,6 @@ function App() {
           return;
         }
 
-        const response = await Notifications.getLastNotificationResponseAsync();
-        if (response === null) {
-          console.log("Tapped on Null: ", response);
-        } else {
-          console.log("Tapped on Android: ", response);
-        }
-
         // Android 알림 채널 생성
         if (Platform.OS === "android") {
           await Notifications.setNotificationChannelAsync("default", {
@@ -129,14 +122,14 @@ function App() {
 
   useEffect(() => {
     // Foreground Message Received
-    const unsubscribe = messaging().onMessage(async (notification) => {
+    const subscribeForeground = messaging().onMessage(async (notification) => {
       Platform.OS === "ios"
         ? console.log(
-            "Foreground Message Received on ios: ",
+            "Foreground notification on ios: ",
             JSON.stringify(notification, null, 3)
           )
         : console.log(
-            "Foreground Message Received on android: ",
+            "Foreground notification on Android: ",
             JSON.stringify(notification, null, 3)
           );
 
@@ -152,38 +145,7 @@ function App() {
       });
     });
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  useEffect(() => {
-    // 사용자가 알림을 탭했을 때
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log("👆 User tapped notification:", response);
-
-        const notification = response.notification;
-        const title = notification.request.content.title;
-        const body = notification.request.content.body;
-        const data = notification.request.content.data;
-
-        // Alert로 알림 데이터 표시
-        Alert.alert(
-          "알림 데이터 확인",
-          `Title: ${title}\n\nBody: ${body}\n\nData: ${JSON.stringify(
-            data,
-            null,
-            2
-          )}`,
-          [{ text: "확인" }]
-        );
-      });
-
-    return () => {
-      responseListener.current &&
-        Notifications.removeNotificationSubscription(responseListener.current);
-    };
+    return subscribeForeground;
   }, []);
 
   if (!appIsReady) {
