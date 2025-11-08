@@ -42,8 +42,6 @@ function App() {
   const navigationRef = useNavigationContainerRef<ROOT_NAVIGATION>();
 
   const routeNameRef = useRef<string | null>(null);
-  const notificationListener = useRef<Notifications.Subscription>();
-  const responseListener = useRef<Notifications.Subscription>();
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
   const [appIsReady, setAppIsReady] = useState<boolean>(false);
@@ -122,30 +120,32 @@ function App() {
 
   useEffect(() => {
     // Foreground Message Received
-    const subscribeForeground = messaging().onMessage(async (notification) => {
-      Platform.OS === "ios"
-        ? console.log(
-            "Foreground notification on ios: ",
-            JSON.stringify(notification, null, 3)
-          )
-        : console.log(
-            "Foreground notification on Android: ",
-            JSON.stringify(notification, null, 3)
-          );
+    const unsubscribeForeground = messaging().onMessage(
+      async (notification) => {
+        Platform.OS === "ios"
+          ? console.log(
+              "Foreground notification on ios: ",
+              JSON.stringify(notification, null, 3)
+            )
+          : console.log(
+              "Foreground notification on Android: ",
+              JSON.stringify(notification, null, 3)
+            );
 
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: notification.notification?.title,
-          body: notification.notification?.body,
-          data: notification.data,
-          sound: "default",
-          priority: Notifications.AndroidNotificationPriority.MAX,
-        },
-        trigger: null,
-      });
-    });
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: notification.notification?.title,
+            body: notification.notification?.body,
+            data: notification.data,
+            sound: "default",
+            priority: Notifications.AndroidNotificationPriority.MAX,
+          },
+          trigger: null,
+        });
+      }
+    );
 
-    return subscribeForeground;
+    return unsubscribeForeground;
   }, []);
 
   if (!appIsReady) {
