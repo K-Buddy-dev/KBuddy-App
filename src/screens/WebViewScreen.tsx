@@ -1,11 +1,13 @@
 import crashlytics from "@react-native-firebase/crashlytics";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import * as Notifications from "expo-notifications";
 import React, { useEffect, useRef, useState } from "react";
 import {
   Alert,
   BackHandler,
   Dimensions,
+  Platform,
   SafeAreaView,
   StyleSheet,
 } from "react-native";
@@ -21,6 +23,7 @@ import handleKakaoLogin from "../auth/handleKakaoLogin";
 import Container from "../components/Container";
 import getFcmToken from "../natives/notification/getFcmToken";
 import shareContent from "../natives/share/shareContent";
+import extractNotificationData from "../utils/extractNotificationData";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -93,6 +96,34 @@ const WebViewScreen = () => {
       console.error("onMessage 에러:", error);
     }
   };
+
+  useEffect(() => {
+    const subscriptionOnTap =
+      Notifications.addNotificationResponseReceivedListener((notification) => {
+        if (notification) {
+          console.log(
+            `addNotificationResponseReceivedListener on ${Platform.OS}: `,
+            JSON.stringify(notification, null, 3)
+          );
+
+          const notificationData = extractNotificationData(notification);
+
+          if (notificationData) {
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "pushNotification",
+                postPart: notificationData.click_action,
+                postID: notificationData.deep_link,
+              })
+            );
+          }
+        }
+      });
+
+    return () => {
+      subscriptionOnTap.remove();
+    };
+  }, []);
 
   useEffect(() => {
     const cangoBack = navState?.canGoBack;
