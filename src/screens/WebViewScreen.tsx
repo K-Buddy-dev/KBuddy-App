@@ -98,13 +98,51 @@ const WebViewScreen = () => {
   };
 
   useEffect(() => {
+    const checkInitialNotification = async () => {
+      const initNotification =
+        await Notifications.getLastNotificationResponseAsync();
+
+      if (initNotification) {
+        console.log(
+          `Initial notification on ${Platform.OS}: `,
+          JSON.stringify(initNotification, null, 3)
+        );
+
+        setTimeout(() => {
+          if (Platform.OS === "android") {
+            const notificationDataForAndroid =
+              initNotification.notification.request.content.data;
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "pushNotification",
+                postPart: notificationDataForAndroid.click_action,
+                postID: notificationDataForAndroid.deep_link,
+              })
+            );
+          } else {
+            const notificationDataForiOS =
+              initNotification.notification.request.trigger.payload;
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "pushNotification",
+                postPart: notificationDataForiOS.click_action,
+                postID: notificationDataForiOS.deep_link,
+              })
+            );
+          }
+        }, 500);
+      }
+    };
+
+    checkInitialNotification();
+
     const subscriptionOnTap =
       Notifications.addNotificationResponseReceivedListener((notification) => {
         if (notification) {
-          console.log(
-            `addNotificationResponseReceivedListener on ${Platform.OS}: `,
-            JSON.stringify(notification, null, 3)
-          );
+          // console.log(
+          //   `addNotificationResponseReceivedListener on ${Platform.OS}: `,
+          //   JSON.stringify(notification, null, 3)
+          // );
 
           const notificationData = extractNotificationData(notification);
 
