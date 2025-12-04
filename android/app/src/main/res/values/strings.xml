@@ -2,7 +2,7 @@
   <string name="app_name">K-Buddy</string>
   <string name="expo_runtime_version">1.0.0</string>
   <string name="hot_updater_channel" moduleConfig="true">production</string>
-  <string name="hot_updater_fingerprint_hash" moduleConfig="true">918b7a2eea6caac590868f80b5f7bfd56bc06afc</string>
+  <string name="hot_updater_fingerprint_hash" moduleConfig="true">1eba4364cb8feba80351ee7e93069a8ff5b41341</string>
   <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
   <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
 </resources>

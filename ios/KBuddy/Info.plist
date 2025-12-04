@@ -59,11 +59,15 @@
     <key>HOT_UPDATER_CHANNEL</key>
     <string>production</string>
     <key>HOT_UPDATER_FINGERPRINT_HASH</key>
-    <string>f88f56b6f9a0917a386d33c33493d53cf399e9d8</string>
+    <string>b614b624a37898cd164fa6f106eed3f0f437e021</string>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
     <key>LSApplicationQueriesSchemes</key>
     <array>
+      <string>fb</string>
+      <string>instagram</string>
+      <string>twitter</string>
+      <string>tiktoksharesdk</string>
       <string>kakaokompassauth</string>
       <string>kakaolink</string>
       <string>kakaoplus</string>

@@ -86,7 +86,7 @@ const WebViewScreen = () => {
           );
           break;
         case "shareContent":
-          await shareContent(message.title, message.url, message.imageUrl);
+          await shareContent(message.title, message.url);
           break;
         default:
           break;
