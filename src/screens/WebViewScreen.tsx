@@ -1,11 +1,13 @@
 import crashlytics from "@react-native-firebase/crashlytics";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import * as Notifications from "expo-notifications";
 import React, { useEffect, useRef, useState } from "react";
 import {
   Alert,
   BackHandler,
   Dimensions,
+  Platform,
   SafeAreaView,
   StyleSheet,
 } from "react-native";
@@ -15,51 +17,25 @@ import {
   WebViewNativeEvent,
   WebViewNavigation,
 } from "react-native-webview/lib/WebViewTypes";
-import {
-  clearInitialNotificationData,
-  getInitialNotificationData,
-} from "../..";
-import { ROOT_NAVIGATION } from "../@types/ROOT_NAVIGATION";
 import handleAppleLogin from "../auth/handleAppleLogin";
 import handleGoogleLogin from "../auth/handleGoogleLogin";
 import handleKakaoLogin from "../auth/handleKakaoLogin";
 import Container from "../components/Container";
 import getFcmToken from "../natives/notification/getFcmToken";
 import shareContent from "../natives/share/shareContent";
+import extractNotificationData from "../utils/extractNotificationData";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
-
-type WebViewScreenRouteProp = RouteProp<ROOT_NAVIGATION, "WebView">;
 
 const WebViewScreen = () => {
   // Logic
   const webviewURL = process.env.EXPO_PUBLIC_WEB_URL;
 
   const navigation = useNavigation<StackNavigationProp<ROOT_NAVIGATION>>();
-  const route = useRoute<WebViewScreenRouteProp>();
-  const notificationData = route.params?.notificationData;
 
   const [navState, setNavState] = useState<WebViewNativeEvent>();
-  const [isWebViewReady, setIsWebViewReady] = useState(false);
   const webviewRef = useRef<WebView>(null);
-  const pendingNotificationData = useRef<any>(null);
-
-  // 웹뷰로 알림 데이터 전송
-  const sendNotificationDataToWebView = (data: any) => {
-    if (!webviewRef.current || !data) return;
-
-    // deep_link와 click_action만 추출하여 전송
-    const payload = {
-      type: "pushNotification",
-      postPart: data.click_action,
-      postID: data.deep_link,
-    };
-
-    console.log("Sending to WebView:", payload);
-
-    webviewRef.current.postMessage(JSON.stringify(payload));
-  };
 
   const onMessage = async (event: WebViewMessageEvent) => {
     try {
@@ -110,7 +86,7 @@ const WebViewScreen = () => {
           );
           break;
         case "shareContent":
-          await shareContent(message.title, message.url, message.imageUrl);
+          await shareContent(message.title, message.url);
           break;
         default:
           break;
@@ -121,36 +97,71 @@ const WebViewScreen = () => {
     }
   };
 
-  // 웹뷰가 로드되면 초기 알림 데이터 전송
   useEffect(() => {
-    if (isWebViewReady) {
-      // terminated 상태에서 앱이 실행된 경우
-      const initialData = getInitialNotificationData();
-      if (initialData) {
-        sendNotificationDataToWebView(initialData);
-        clearInitialNotificationData();
-      }
-      // foreground/background에서 알림을 탭한 경우
-      else if (notificationData) {
-        sendNotificationDataToWebView(notificationData);
-      }
-      // 대기 중인 데이터가 있는 경우
-      else if (pendingNotificationData.current) {
-        sendNotificationDataToWebView(pendingNotificationData.current);
-        pendingNotificationData.current = null;
-      }
-    }
-  }, [isWebViewReady]);
+    const checkInitialNotification = async () => {
+      const initNotification =
+        await Notifications.getLastNotificationResponseAsync();
 
-  // route params가 업데이트될 때마다 데이터 전송
-  useEffect(() => {
-    if (notificationData && isWebViewReady) {
-      sendNotificationDataToWebView(notificationData);
-    } else if (notificationData && !isWebViewReady) {
-      // 웹뷰가 아직 준비되지 않았다면 대기
-      pendingNotificationData.current = notificationData;
-    }
-  }, [notificationData, isWebViewReady]);
+      if (initNotification) {
+        console.log(
+          `Initial notification on ${Platform.OS}: `,
+          JSON.stringify(initNotification, null, 3)
+        );
+
+        setTimeout(() => {
+          if (Platform.OS === "android") {
+            const notificationDataForAndroid =
+              initNotification.notification.request.content.data;
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "pushNotification",
+                postPart: notificationDataForAndroid.click_action,
+                postID: notificationDataForAndroid.deep_link,
+              })
+            );
+          } else {
+            const notificationDataForiOS =
+              initNotification.notification.request.trigger.payload;
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "pushNotification",
+                postPart: notificationDataForiOS.click_action,
+                postID: notificationDataForiOS.deep_link,
+              })
+            );
+          }
+        }, 500);
+      }
+    };
+
+    checkInitialNotification();
+
+    const subscriptionOnTap =
+      Notifications.addNotificationResponseReceivedListener((notification) => {
+        if (notification) {
+          // console.log(
+          //   `addNotificationResponseReceivedListener on ${Platform.OS}: `,
+          //   JSON.stringify(notification, null, 3)
+          // );
+
+          const notificationData = extractNotificationData(notification);
+
+          if (notificationData) {
+            webviewRef.current?.postMessage(
+              JSON.stringify({
+                type: "pushNotification",
+                postPart: notificationData.click_action,
+                postID: notificationData.deep_link,
+              })
+            );
+          }
+        }
+      });
+
+    return () => {
+      subscriptionOnTap.remove();
+    };
+  }, []);
 
   useEffect(() => {
     const cangoBack = navState?.canGoBack;
@@ -201,9 +212,6 @@ const WebViewScreen = () => {
           webviewDebuggingEnabled={true}
           allowsBackForwardNavigationGestures={true}
           startInLoadingState={true}
-          onLoad={() => {
-            setIsWebViewReady(true);
-          }}
           onContentProcessDidTerminate={() => {
             webviewRef.current?.reload();
           }}

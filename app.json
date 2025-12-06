@@ -3,7 +3,7 @@
     "name": "K-Buddy",
     "slug": "k-buddy",
     "scheme": "kbuddy",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/app_icon.png",
     "userInterfaceStyle": "light",
@@ -104,6 +104,18 @@
         "@hot-updater/react-native",
         {
           "channel": "production"
+        }
+      ],
+      [
+        "react-native-share",
+        {
+          "ios": ["fb", "instagram", "twitter", "tiktoksharesdk"],
+          "android": [
+            "com.facebook.katana",
+            "com.instagram.android",
+            "com.twitter.android",
+            "com.zhiliaoapp.musically"
+          ]
         }
       ],
       ["@react-native-google-signin/google-signin"],
