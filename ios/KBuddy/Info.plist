@@ -21,7 +21,7 @@
 		<key>CFBundlePackageType</key>
 		<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 		<key>CFBundleShortVersionString</key>
-		<string>1.0.0</string>
+		<string>1.0.2</string>
 		<key>CFBundleSignature</key>
 		<string>????</string>
 		<key>CFBundleURLTypes</key>
@@ -29,6 +29,7 @@
 			<dict>
 				<key>CFBundleURLSchemes</key>
 				<array>
+					<string>kbuddy</string>
 					<string>com.teamkbuddy.kbuddy</string>
 				</array>
 			</dict>
@@ -58,11 +59,15 @@
 		<key>HOT_UPDATER_CHANNEL</key>
 		<string>production</string>
 		<key>HOT_UPDATER_FINGERPRINT_HASH</key>
-		<string>49616db7308788ce7f2bcc82204a5653495f8554</string>
+		<string>f74ebf8813978ef26ba9fb30a68f3157c83b61d5</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
+			<string>fb</string>
+			<string>instagram</string>
+			<string>twitter</string>
+			<string>tiktoksharesdk</string>
 			<string>kakaokompassauth</string>
 			<string>kakaolink</string>
 			<string>kakaoplus</string>
@@ -86,6 +91,10 @@
 		<string>$(PRODUCT_NAME) needs permission to save edited or captured images to your device.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>remote-notification</string>
+		</array>
 		<key>UILaunchStoryboardName</key>
 		<string>SplashScreen</string>
 		<key>UIRequiredDeviceCapabilities</key>

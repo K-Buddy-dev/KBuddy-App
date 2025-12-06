@@ -1,3 +1,4 @@
+import crashlytics from "@react-native-firebase/crashlytics";
 import {
   GoogleSignin,
   isSuccessResponse,
@@ -22,7 +23,8 @@ const handleGoogleLogin = async (webviewRef: React.RefObject<WebView<{}>>) => {
       return;
     }
   } catch (error) {
-    console.log(`login error: ${error}`);
+    crashlytics().recordError(error as Error);
+    console.log("구글 로그인 오류: ", error);
   }
 };
 

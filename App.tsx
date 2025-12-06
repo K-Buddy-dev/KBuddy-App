@@ -1,6 +1,7 @@
 import { getUpdateSource, HotUpdater } from "@hot-updater/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
+import messaging from "@react-native-firebase/messaging";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import {
@@ -8,9 +9,11 @@ import {
   useNavigationContainerRef,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Text, View } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Platform, Text, View } from "react-native";
 import AlbumScreen from "./src/screens/AlbumScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import WebViewScreen from "./src/screens/WebViewScreen";
@@ -22,17 +25,30 @@ SplashScreen.setOptions({
   fade: true,
 });
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
 const Stack = createStackNavigator<ROOT_NAVIGATION>();
 
 function App() {
   // Logic
   const KAKAO_NATIVE_APP_KEY = process.env.EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY;
   const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID;
-  const navigationRef = useNavigationContainerRef();
+  const navigationRef = useNavigationContainerRef<ROOT_NAVIGATION>();
+
   const routeNameRef = useRef<string | null>(null);
 
   const [firstLaunch, setFirstLaunch] = useState<boolean | null>(null);
   const [appIsReady, setAppIsReady] = useState<boolean>(false);
+
+  const onLayoutRootView = useCallback(() => {
+    SplashScreen.hideAsync();
+  }, [appIsReady]);
 
   useEffect(() => {
     const init = async () => {
@@ -58,10 +74,6 @@ function App() {
     init();
   }, []);
 
-  const onLayoutRootView = useCallback(() => {
-    SplashScreen.hideAsync();
-  }, [appIsReady]);
-
   useEffect(() => {
     AsyncStorage.getItem("launched").then((value) => {
       if (value === null) {
@@ -71,6 +83,69 @@ function App() {
         setFirstLaunch(false);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    async function initNotifications() {
+      if (Device.isDevice) {
+        // 권한 확인 및 요청
+        const { status: existingStatus } =
+          await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if (existingStatus !== "granted") {
+          const { status } = await Notifications.requestPermissionsAsync();
+          finalStatus = status;
+        }
+        if (finalStatus !== "granted") {
+          console.log("알림 권한 거부됨");
+          return;
+        }
+
+        // Android 알림 채널 생성
+        if (Platform.OS === "android") {
+          await Notifications.setNotificationChannelAsync("default", {
+            name: "default",
+            importance: Notifications.AndroidImportance.MAX,
+            vibrationPattern: [0, 250, 250, 250],
+            lightColor: "#6952f9",
+          });
+        }
+      } else {
+        console.log("실기기에서만 알림 작동");
+      }
+    }
+
+    initNotifications();
+  }, []);
+
+  useEffect(() => {
+    // Foreground Message Received
+    const unsubscribeForeground = messaging().onMessage(
+      async (notification) => {
+        Platform.OS === "ios"
+          ? console.log(
+              "Foreground notification on ios: ",
+              JSON.stringify(notification, null, 3)
+            )
+          : console.log(
+              "Foreground notification on Android: ",
+              JSON.stringify(notification, null, 3)
+            );
+
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: notification.notification?.title,
+            body: notification.notification?.body,
+            data: notification.data,
+            sound: "default",
+            priority: Notifications.AndroidNotificationPriority.MAX,
+          },
+          trigger: null,
+        });
+      }
+    );
+
+    return unsubscribeForeground;
   }, []);
 
   if (!appIsReady) {

@@ -1,3 +1,4 @@
+import crashlytics from "@react-native-firebase/crashlytics";
 import * as ImageManipulator from "expo-image-manipulator";
 import * as MediaLibrary from "expo-media-library";
 
@@ -24,7 +25,8 @@ const convertBase64Uri = async (assets: MediaLibrary.Asset[]) => {
         imageFiles.push(result);
       }
     } catch (error) {
-      console.log(`갤러리 이미지 변환 오류: `, error);
+      crashlytics().recordError(error as Error);
+      console.log("갤러리 이미지 변환 오류: ", error);
     }
   }
 

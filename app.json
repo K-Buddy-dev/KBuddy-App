@@ -2,7 +2,8 @@
   "expo": {
     "name": "K-Buddy",
     "slug": "k-buddy",
-    "version": "1.0.0",
+    "scheme": "kbuddy",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/app_icon.png",
     "userInterfaceStyle": "light",
@@ -15,7 +16,11 @@
       "infoPlist": {
         "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your camera to let you take photos and upload them when creating posts or updating your profile.",
         "NSPhotoLibraryUsageDescription": "$(PRODUCT_NAME) needs access to your gallery so you can select existing images to attach to your posts or profile.",
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIBackgroundModes": ["remote-notification"]
+      },
+      "entitlements": {
+        "aps-environment": "production"
       },
       "appleTeamId": "PN765X482W"
     },
@@ -31,12 +36,14 @@
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.ACCESS_MEDIA_LOCATION",
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.POST_NOTIFICATIONS"
       ]
     },
     "plugins": [
       ["@react-native-firebase/app"],
       ["@react-native-firebase/crashlytics"],
+      ["@react-native-firebase/messaging"],
       [
         "expo-camera",
         {
@@ -55,6 +62,9 @@
         "expo-build-properties",
         {
           "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0",
             "extraMavenRepos": [
               "https://devrepo.kakao.com/nexus/content/groups/public/"
             ]
@@ -96,8 +106,21 @@
           "channel": "production"
         }
       ],
+      [
+        "react-native-share",
+        {
+          "ios": ["fb", "instagram", "twitter", "tiktoksharesdk"],
+          "android": [
+            "com.facebook.katana",
+            "com.instagram.android",
+            "com.twitter.android",
+            "com.zhiliaoapp.musically"
+          ]
+        }
+      ],
       ["@react-native-google-signin/google-signin"],
       ["expo-apple-authentication"],
+      ["expo-notifications"],
       "expo-font"
     ],
     "web": {
